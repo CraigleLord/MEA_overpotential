@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import openpyxl; wb = openpyxl.load_workbook\\('Overpotnital/Air/CN BM air.xlsx', data_only=True\\); [print\\(s, wb[s].max_row, wb[s].max_column\\) for s in wb.sheetnames]\")",
+      "PowerShell(python --version)",
+      "PowerShell(py --version)",
+      "PowerShell(try { $excel = New-Object -ComObject Excel.Application -ErrorAction Stop; Write-Output \"Excel OK\"; $excel.Quit\\(\\) } catch { Write-Output \"No Excel COM\" }; Get-Command node, npm -ErrorAction SilentlyContinue | Select-Object Name, Version)",
+      "PowerShell($xl = New-Object -ComObject Excel.Application; $xl.Visible = $false; $xl.DisplayAlerts = $false; $wb = $xl.Workbooks.Open\\('c:\\\\Users\\\\user\\\\My Drive\\\\KAIST MASc 2021\\\\Laboratory Work\\\\Protocol\\\\overpotential calculation\\\\For paper SI\\\\Overpotnital\\\\Air\\\\CN BM air.xlsx'\\); foreach \\($ws in $wb.Worksheets\\) { Write-Output \\('Sheet: ' + $ws.Name + ' Rows=' + $ws.UsedRange.Rows.Count + ' Cols=' + $ws.UsedRange.Columns.Count\\) }; $wb.Close\\($false\\); $xl.Quit\\(\\))",
+      "PowerShell($py = 'C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe'; & $py --version; & $py -c \"import pandas, matplotlib, openpyxl, numpy; print\\('pandas', pandas.__version__\\); print\\('matplotlib', matplotlib.__version__\\); print\\('openpyxl', openpyxl.__version__\\); print\\('numpy', numpy.__version__\\)\")",
+      "PowerShell($py = 'C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe'; & $py -m pip install --quiet --user pandas matplotlib openpyxl numpy; & $py -c \"import pandas, matplotlib, openpyxl, numpy; print\\('OK', pandas.__version__, matplotlib.__version__, openpyxl.__version__, numpy.__version__\\)\")",
+      "PowerShell($py = 'C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe'; & $py 'c:\\\\Users\\\\user\\\\My Drive\\\\KAIST MASc 2021\\\\Laboratory Work\\\\Protocol\\\\overpotential calculation\\\\For paper SI\\\\plot_lsv_reference_style.py')",
+      "Read(//c/Users/user/.claude/projects/c--Users-user-My-Drive-KAIST-MASc-2021-Laboratory-Work-Protocol-overpotential-calculation-For-paper-SI//**)",
+      "Bash(python -)",
+      "Bash(winget install *)",
+      "WebSearch",
+      "Bash(npm install *)",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}
