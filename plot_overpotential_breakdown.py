@@ -20,7 +20,7 @@ import os
 FILE = (
     r"Overpotnital\O2 BP\BOL\Edited\CN BM 1.5bp O2_edited.xlsx"
 )
-OUT  = r"Overpotnital\O2 BP\BOL\Edited\CN BM 1.5bp O2_overpot_breakdown.png"
+OUT  = r"Overpotential Graphs\CN BM 1.5bp O2_overpot_breakdown.png"
 
 # Tafel parameters from fitted image (BOL)
 TAFEL_INTERCEPT = -0.517   # V  (η = slope·ln j + intercept, j in A cm⁻²)
@@ -116,13 +116,29 @@ def main():
     V_meas    = V                             # measured (= after + mass-transport)
 
     # --- Plot ---
-    matplotlib.rcParams.update({
-        "font.family": "sans-serif",
-        "font.size": 10,
-        "axes.linewidth": 1.0,
-    })
+    # Figure is ~5.5 x 4.5" so that proportions match the reference image.
+    # FS is set relative to figure inches so fonts are visually large.
+    FS   = 14    # pt — applied to every text element individually
+    LW   = 1.5   # I-V curve line width
+    BW   = 1.0   # axis border + tick line width
+    DPI  = 300
 
     fig, ax = plt.subplots(figsize=(5.5, 4.5))
+
+    # Reset rcParams cleanly so nothing bleeds in from previous state
+    matplotlib.rcParams.update(matplotlib.rcParamsDefault)
+    matplotlib.rcParams.update({
+        "font.family":     "sans-serif",
+        "font.size":       FS,
+        "axes.labelsize":  FS,
+        "axes.titlesize":  FS,
+        "xtick.labelsize": FS,
+        "ytick.labelsize": FS,
+        "legend.fontsize": FS,
+        "axes.linewidth":    BW,
+        "xtick.major.width": BW,
+        "ytick.major.width": BW,
+    })
 
     # Colors matching reference image
     c_kin  = "#FFA07A"   # salmon / orange
@@ -130,33 +146,53 @@ def main():
     c_pro  = "#9090D8"   # blue-purple
     c_mass = "#F0E860"   # yellow
 
-    # Fill regions (stacked)
-    ax.fill_between(I_mA, V_kin,  V_erev,   color=c_kin,  alpha=0.85, label="Kinetic")
-    ax.fill_between(I_mA, V_ohm,  V_kin,    color=c_ohm,  alpha=0.85, label="Ohmic")
-    ax.fill_between(I_mA, V_pro,  V_ohm,    color=c_pro,  alpha=0.85, label="Proton")
-    ax.fill_between(I_mA, V_meas, V_pro,    color=c_mass, alpha=0.85, label="Mass Transport")
+    # Clip mass-transport: no yellow below the I-V curve
+    V_pro_clipped = np.maximum(V_pro, V_meas)
+
+    # Filled regions (stacked)
+    ax.fill_between(I_mA, V_kin,  V_erev,        color=c_kin,  alpha=0.85, label="Kinetic")
+    ax.fill_between(I_mA, V_ohm,  V_kin,         color=c_ohm,  alpha=0.85, label="Ohmic")
+    ax.fill_between(I_mA, V_pro,  V_ohm,         color=c_pro,  alpha=0.85, label="Proton")
+    ax.fill_between(I_mA, V_meas, V_pro_clipped, color=c_mass, alpha=0.85, label="Mass Transport")
 
     # Measured I-V curve
-    ax.plot(I_mA, V, color="black", linewidth=1.5, zorder=5)
+    ax.plot(I_mA, V, color="black", linewidth=LW, zorder=5)
+
+    # --- Red dots at 500 mA cm⁻² ---
+    i_mark      = 500.0
+    v_kin_mark  = float(np.interp(i_mark, I_mA, V_kin))
+    v_meas_mark = float(np.interp(i_mark, I_mA, V_meas))
+
+    dot_kw = dict(color="red", marker="o", markersize=8,
+                  linestyle="none", zorder=10)
+    ax.plot(i_mark, v_kin_mark,  **dot_kw)
+    ax.plot(i_mark, v_meas_mark, **dot_kw)
+
+    lbl_kw = dict(color="red", fontsize=FS, va="center", ha="left")
+    ax.text(i_mark + 50, v_kin_mark,  f"{v_kin_mark:.2f}",  **lbl_kw)
+    ax.text(i_mark + 50, v_meas_mark, f"{v_meas_mark:.2f}", **lbl_kw)
 
     # Erev reference line (dashed, light grey)
     ax.axhline(erev, color="grey", linewidth=0.8, linestyle="--", alpha=0.6)
 
-    # Axis limits
+    # Axis limits and labels
     ax.set_xlim(0, 3500)
     ax.set_ylim(0.2, 1.2)
+    ax.set_xlabel(r"Current Density (mAcm$^{-2}$)", fontsize=FS)
+    ax.set_ylabel("Cell Voltage (V)", fontsize=FS)
 
-    ax.set_xlabel(r"Current Density (mAcm$^{-2}$)", fontsize=10)
-    ax.set_ylabel("Cell Voltage (V)", fontsize=10)
+    # Tick style
+    # Ticks outside, only on left and bottom axes
+    ax.tick_params(direction="out", top=False, right=False,
+                   labelsize=FS, width=BW, length=5)
 
-    # Legend (top right, no frame)
-    ax.legend(loc="upper right", fontsize=8, frameon=True,
-              framealpha=0.9, edgecolor="grey")
-
-    ax.tick_params(direction="in", top=True, right=True)
+    # Legend — white box, black border
+    leg = ax.legend(loc="upper right", fontsize=FS, frameon=True,
+                    facecolor="white", edgecolor="black")
+    leg.get_frame().set_linewidth(1.5)
 
     plt.tight_layout()
-    plt.savefig(out, dpi=200, bbox_inches="tight")
+    plt.savefig(out, dpi=DPI, bbox_inches="tight")
     print(f"Saved → {out}")
     plt.show()
 
