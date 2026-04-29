@@ -84,7 +84,7 @@ def read_excel(filepath):
 # Plotting
 # ---------------------------------------------------------------------------
 
-def make_plot(I_mA, V, R_ohm, R_pro, T_K, P_H2, P_O2, intercept, slope, out_path):
+def make_plot(I_mA, V, R_ohm, R_pro, T_K, P_H2, P_O2, intercept, slope, out_path, ymax=1.2):
     FS  = 14
     LW  = 1.5
     BW  = 1.0
@@ -150,7 +150,7 @@ def make_plot(I_mA, V, R_ohm, R_pro, T_K, P_H2, P_O2, intercept, slope, out_path
     ax.axhline(erev, color="grey", linewidth=0.8, linestyle="--", alpha=0.6)
 
     ax.set_xlim(0, 3500)
-    ax.set_ylim(0.2, 1.2)
+    ax.set_ylim(0.2, ymax)
     ax.set_xlabel(r"Current Density (mAcm$^{-2}$)", fontsize=FS)
     ax.set_ylabel("Cell Voltage (V)", fontsize=FS)
     ax.tick_params(direction="out", top=False, right=False,
@@ -190,10 +190,11 @@ def main():
 
         out_path = os.path.join(OUT_BASE, condition, durability,
                                 stem + "_overpot_breakdown.png")
+        ymax = 1.18 if " BP" not in condition else 1.2
 
         try:
             data = read_excel(fp)
-            make_plot(*data, out_path=out_path)
+            make_plot(*data, out_path=out_path, ymax=ymax)
             print(f"  OK  {condition}/{durability}/{stem}")
             ok += 1
         except Exception as e:
