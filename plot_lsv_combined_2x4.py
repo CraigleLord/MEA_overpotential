@@ -103,6 +103,10 @@ ROWS = [
     ("O2 BP",  "H$_2$/O$_2$", "1.5 bar$_g$", "75k",  3500, 1000),
 ]
 
+# Uniform axis limits applied to ALL subplots so every panel shares the same scale.
+XLIM_ALL = 3500
+PMAX_ALL = 1000
+
 DURS = [("BOL", "BOL", "-"), ("30K", "30K", "--"), ("75K", None, ":")]
 
 # ---------------------------------------------------------------------------
@@ -159,23 +163,21 @@ def build_combined(sample_order, color_map, group_name):
                 ax_p.plot(I, P, ls=ls, color=clr, lw=1.4)
 
 
-        # Axes formatting
-        xtick = 500 if xlim <= 2500 else 1000
+        # Axes formatting  (uniform scale across all rows)
         for ax in (ax_v, ax_p):
-            ax.set_xlim(0, xlim)
+            ax.set_xlim(0, XLIM_ALL)
             ax.tick_params(which="both", direction="out", top=False, right=False)
             ax.minorticks_on()
-            ax.xaxis.set_major_locator(plt.MultipleLocator(xtick))
+            ax.xaxis.set_major_locator(plt.MultipleLocator(1000))
             ax.set_xlabel("Current Density (mAcm$^{-2}$)", fontsize=8)
 
         ax_v.set_ylim(0.2, 1.0)
         ax_v.set_ylabel("Cell Voltage (V)", fontsize=8)
         ax_v.yaxis.set_major_locator(plt.MultipleLocator(0.2))
 
-        ptick = 200 if pmax >= 700 else 100
-        ax_p.set_ylim(0, pmax)
+        ax_p.set_ylim(0, PMAX_ALL)
         ax_p.set_ylabel("Power Density (mWcm$^{-2}$)", fontsize=8)
-        ax_p.yaxis.set_major_locator(plt.MultipleLocator(ptick))
+        ax_p.yaxis.set_major_locator(plt.MultipleLocator(200))
 
         # Condition annotation in all left (I-V) panels
         annot = (
@@ -273,23 +275,21 @@ def build_bol_figure(sample_list, group_name):
             ax_v.plot(I[idx], V[idx], marker="o", ms=4,
                       color=clr, zorder=5, linestyle="none")
 
-        # Axes formatting
-        xtick = 500 if xlim <= 2500 else 1000
+        # Axes formatting  (uniform scale across all rows)
         for ax in (ax_v, ax_p):
-            ax.set_xlim(0, xlim)
+            ax.set_xlim(0, XLIM_ALL)
             ax.tick_params(which="both", direction="out", top=False, right=False)
             ax.minorticks_on()
-            ax.xaxis.set_major_locator(plt.MultipleLocator(xtick))
+            ax.xaxis.set_major_locator(plt.MultipleLocator(1000))
             ax.set_xlabel("Current Density (mAcm$^{-2}$)", fontsize=8)
 
         ax_v.set_ylim(0.2, 1.0)
         ax_v.set_ylabel("Cell Voltage (V)", fontsize=8)
         ax_v.yaxis.set_major_locator(plt.MultipleLocator(0.2))
 
-        ptick = 200 if pmax >= 700 else 100
-        ax_p.set_ylim(0, pmax)
+        ax_p.set_ylim(0, PMAX_ALL)
         ax_p.set_ylabel("Power Density (mWcm$^{-2}$)", fontsize=8)
-        ax_p.yaxis.set_major_locator(plt.MultipleLocator(ptick))
+        ax_p.yaxis.set_major_locator(plt.MultipleLocator(200))
 
         # Legend only in top-left I-V panel
         if row_idx == 0:

@@ -42,19 +42,26 @@ DURS = [
     ("75K", "75k",  "#999999", "green",  ":",  "^"),   # 75k lowercase for O2 BP
 ]
 
-LN_LO, LN_HI = -3.5, -2.5   # Tafel regression window
+LN_LO, LN_HI = -3.5, -2.5   # default Tafel regression window
+
+# Per-sample-durability overrides where the default window gives a poor fit
+WINDOW_OVERRIDE = {
+    ("VC Polyol", "30K"): (-4.0, -1.65),
+    ("AB BM",     "75K"): (-4.0, -2.0),
+}
 
 
 def load_iv(cond_folder, dur_dir, fname):
-    folder = os.path.join(BASE, "Overpotnital", cond_folder, dur_dir)
-    for sfx in ("_edited.xlsx", "_unchanged.xlsx", ".xlsx"):
+    folder = os.path.join(BASE, "Overpotnital", cond_folder, dur_dir, "Edited")
+    for sfx in ("_edited.xlsx", "_unchanged.xlsx"):
         p = os.path.join(folder, fname + sfx)
         if os.path.exists(p):
             wb = openpyxl.load_workbook(p, data_only=True)
             ws  = wb.active
             pts = [(ws.cell(r,1).value, ws.cell(r,2).value)
                    for r in range(4, ws.max_row+1)
-                   if ws.cell(r,1).value is not None]
+                   if isinstance(ws.cell(r,1).value, (int, float))
+                   and isinstance(ws.cell(r,2).value, (int, float))]
             wb.close()
             I_A = np.array([a for a, _ in pts])
             V   = np.array([v for _, v in pts])
@@ -62,9 +69,10 @@ def load_iv(cond_folder, dur_dir, fname):
     return None, None
 
 
-def tafel_fit(j, eta):
+def tafel_fit(j, eta, samp_lbl, dur_lbl):
     ln_j = np.log(j)
-    mask = (ln_j >= LN_LO) & (ln_j <= LN_HI)
+    lo, hi = WINDOW_OVERRIDE.get((samp_lbl, dur_lbl), (LN_LO, LN_HI))
+    mask = (ln_j >= lo) & (ln_j <= hi)
     if mask.sum() < 2:
         return None, None, ln_j
     slope, intercept, *_ = stats.linregress(ln_j[mask], eta[mask])
@@ -87,7 +95,7 @@ for samp_lbl, fname in SAMPLES:
             continue
 
         eta  = V - E_EQ
-        slope, intercept, ln_j = tafel_fit(j, eta)
+        slope, intercept, ln_j = tafel_fit(j, eta, samp_lbl, dur_lbl)
         all_eta.extend(eta.tolist())
 
         # data points

@@ -231,23 +231,21 @@ def build_combined_grid(sample_order, color_map, group_name):
                 ax_v.plot(I, V, ls=ls, color=color, lw=1.4)
                 ax_p.plot(I, P, ls=ls, color=color, lw=1.4)
 
-        # Axes formatting
-        x_tick = 500 if xlim <= 2500 else 1000
+        # Axes formatting — uniform scale across all rows
         for ax in (ax_v, ax_p):
-            ax.set_xlim(0, xlim)
+            ax.set_xlim(0, 3500)
             ax.set_xlabel("Current Density (mAcm$^{-2}$)", fontsize=8)
             ax.tick_params(which="both", direction="out", top=False, right=False)
             ax.minorticks_on()
-            ax.xaxis.set_major_locator(plt.MultipleLocator(x_tick))
+            ax.xaxis.set_major_locator(plt.MultipleLocator(1000))
 
         ax_v.set_ylim(0.2, 1.0)
         ax_v.set_ylabel("Cell Voltage (V)", fontsize=8)
         ax_v.yaxis.set_major_locator(plt.MultipleLocator(0.2))
 
-        p_tick = 200 if plim_max >= 700 else 100
-        ax_p.set_ylim(0, plim_max)
+        ax_p.set_ylim(0, 1000)
         ax_p.set_ylabel("Power Density (mWcm$^{-2}$)", fontsize=8)
-        ax_p.yaxis.set_major_locator(plt.MultipleLocator(p_tick))
+        ax_p.yaxis.set_major_locator(plt.MultipleLocator(200))
 
         # Condition annotation in all left (I-V) panels
         annot = (
