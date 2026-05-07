@@ -160,7 +160,7 @@ ANNOT = (
 
 def draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
                fs=21, lw=1.6, show_legend=False, show_annot=False,
-               annot_str="", ymax=1.2, show_xlabel=False, show_ylabel=False):
+               annot_str="", ymax=1.2, legend_frameon=False):
 
     # Trim fold-back: only use data up to the peak current density
     idx_peak = int(np.argmax(I_mA))
@@ -218,10 +218,6 @@ def draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
     ax.set_ylim(0.2, ymax)
     ax.tick_params(direction="out", top=False, right=False,
                    labelsize=fs, width=1.2, length=5)
-    if show_xlabel:
-        ax.set_xlabel(r"Current Density (mAcm$^{-2}$)", fontsize=fs)
-    if show_ylabel:
-        ax.set_ylabel("Cell Voltage (V)", fontsize=fs)
     ax.xaxis.set_major_locator(plt.MultipleLocator(1000))
     ax.yaxis.set_major_locator(plt.MultipleLocator(0.2))
     for spine in ax.spines.values():
@@ -234,8 +230,8 @@ def draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
             mpatches.Patch(color=C_PRO,  label="Proton"),
             mpatches.Patch(color=C_MASS, label="Mass Transport"),
         ]
-        ax.legend(handles=patches, loc="upper right", fontsize=10,
-                  frameon=True, facecolor="white", edgecolor="black",
+        ax.legend(handles=patches, loc="upper right", fontsize=12,
+                  frameon=legend_frameon, facecolor="none", edgecolor="black",
                   handlelength=1.0, borderpad=0.3, labelspacing=0.15)
 
     if show_annot and annot_str:
@@ -258,7 +254,7 @@ def build_bol_grid(sample_list, group_name):
     ncols = len(BOL_CONDITIONS)
     nrows = len(sample_list)
     fs        = 18
-    label_x   = -0.022 * fs   # scales with fs: -0.462 at fs=21, -0.396 at fs=18
+    label_x   = -0.55
     title_pad = fs * 0.67      # scales with fs: ~14 at fs=21, ~12 at fs=18
 
     fig, axes = plt.subplots(
@@ -266,7 +262,10 @@ def build_bol_grid(sample_list, group_name):
         figsize=(4.0 * ncols, 3.5 * nrows),
         dpi=300,
     )
-    fig.subplots_adjust(hspace=0.35, wspace=0.35)
+    fig.subplots_adjust(hspace=0.25, wspace=0.25)
+    fig.supxlabel(r"Current Density (mAcm$^{-2}$)", fontsize=fs, y=0.06)
+    fig.text(0.07, 0.5, "Cell Voltage (V)", ha='center', va='center',
+             rotation='vertical', fontsize=fs)
 
     for row_idx, samp in enumerate(sample_list):
         for col_idx, (cond_folder, dur_folder, cond_label) in enumerate(BOL_CONDITIONS):
@@ -286,8 +285,7 @@ def build_bol_grid(sample_list, group_name):
                            fs=fs, lw=1.6,
                            show_legend=is_topleft,
                            show_annot=False,
-                           annot_str=ANNOT, ymax=ymax,
-                           show_xlabel=is_topleft, show_ylabel=is_topleft)
+                           annot_str=ANNOT, ymax=ymax)
             except Exception as e:
                 print(f"  ERROR {samp}/{cond_folder}: {e}")
                 ax.text(0.5, 0.5, "error", transform=ax.transAxes,
@@ -314,7 +312,7 @@ def build_dur_grid(sample_list, cond_folder, safe_name, is_15bp, group_name):
     ncols = len(sample_list)
     fs        = 18
     ymax      = 1.18
-    label_x   = -0.022 * fs
+    label_x   = -0.55
     title_pad = fs * 0.67
 
     fig, axes = plt.subplots(
@@ -322,7 +320,10 @@ def build_dur_grid(sample_list, cond_folder, safe_name, is_15bp, group_name):
         figsize=(4.0 * ncols, 3.5 * nrows),
         dpi=300,
     )
-    fig.subplots_adjust(hspace=0.35, wspace=0.35)
+    fig.subplots_adjust(hspace=0.25, wspace=0.25)
+    fig.supxlabel(r"Current Density (mAcm$^{-2}$)", fontsize=fs, y=0.04)
+    fig.text(0.07, 0.5, "Cell Voltage (V)", ha='center', va='center',
+             rotation='vertical', fontsize=fs)
 
     for row_idx, (dur_label, dur_folder) in enumerate(DURS):
         for col_idx, samp in enumerate(sample_list):
@@ -341,7 +342,7 @@ def build_dur_grid(sample_list, cond_folder, safe_name, is_15bp, group_name):
                                fs=fs, lw=1.6,
                                show_legend=is_topleft,
                                ymax=ymax,
-                               show_xlabel=is_topleft, show_ylabel=is_topleft)
+                               legend_frameon=(safe_name == "Air_15bp" and group_name == "Main"))
                 except Exception as e:
                     print(f"  ERROR {samp}/{dur_label}/{cond_folder}: {e}")
                     ax.text(0.5, 0.5, "error", transform=ax.transAxes,

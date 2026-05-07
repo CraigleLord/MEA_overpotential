@@ -131,7 +131,8 @@ C_MASS = "#F0E860"
 
 
 def draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
-               fs=7, lw=0.8, show_legend=False, ymax=1.2):
+               fs=7, lw=0.8, show_legend=False, ymax=1.2,
+               show_xlabel=True, show_ylabel=True):
     I_A  = I_mA / 200
     ln_j = np.log(I_mA / 1000)
 
@@ -166,8 +167,10 @@ def draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
     ax.set_ylim(0.2, ymax)
     ax.tick_params(direction="out", top=False, right=False,
                    labelsize=fs, width=0.6, length=3)
-    ax.set_xlabel(r"Current Density (mAcm$^{-2}$)", fontsize=fs)
-    ax.set_ylabel("Cell Voltage (V)", fontsize=fs)
+    if show_xlabel:
+        ax.set_xlabel(r"Current Density (mAcm$^{-2}$)", fontsize=fs)
+    if show_ylabel:
+        ax.set_ylabel("Cell Voltage (V)", fontsize=fs)
     ax.xaxis.set_major_locator(plt.MultipleLocator(1000))
     ax.yaxis.set_major_locator(plt.MultipleLocator(0.2))
     for spine in ax.spines.values():
@@ -216,7 +219,9 @@ def build_dur_grid(sample_list, cond_folder, safe_name, is_15bp, group_name):
                     draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
                                fs=fs, lw=0.9,
                                show_legend=(row_idx == 0 and col_idx == 0),
-                               ymax=ymax)
+                               ymax=ymax,
+                               show_xlabel=(row_idx == nrows - 1),
+                               show_ylabel=(col_idx == 0))
                 except Exception as e:
                     print(f"  ERROR {samp}/{dur_label}/{cond_folder}: {e}")
                     ax.text(0.5, 0.5, "error", transform=ax.transAxes,
@@ -227,14 +232,12 @@ def build_dur_grid(sample_list, cond_folder, safe_name, is_15bp, group_name):
                              fontweight="bold", pad=4)
 
             if col_idx == 0:
-                ax.set_ylabel("Cell Voltage (V)", fontsize=fs, labelpad=4)
+                ax.yaxis.set_label_coords(-0.18, 0.5)
                 ax.text(-0.22, 0.5, dur_label,
                         transform=ax.transAxes,
                         fontsize=fs + 2, fontweight="bold",
                         ha="center", va="center",
                         rotation=90, clip_on=False)
-            else:
-                ax.set_ylabel("Cell Voltage (V)", fontsize=fs)
 
     out = os.path.join(ALT_DIR, f"Overpot_dur_{safe_name}_{group_name}.png")
     fig.savefig(out, dpi=300, bbox_inches="tight")

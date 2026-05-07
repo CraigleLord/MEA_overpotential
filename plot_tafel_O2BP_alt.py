@@ -18,16 +18,17 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 AREA  = 5.0
 E_EQ  = 1.23
 BASE  = os.path.dirname(os.path.abspath(__file__))
-OUT   = os.path.join(BASE, "Durability I-V figure", "tafel plot alt")
-os.makedirs(OUT, exist_ok=True)
+OUT      = os.path.join(BASE, "Durability I-V figure", "tafel plot alt")
+TAFEL_DIR = os.path.join(OUT, "Tafel")
+os.makedirs(TAFEL_DIR, exist_ok=True)
 
 plt.rcParams.update({
     "font.family":       "Arial",
     "font.size":         9,
     "axes.linewidth":    0.8,
     "xtick.major.width": 0.8, "ytick.major.width": 0.8,
-    "xtick.direction":   "in", "ytick.direction": "in",
-    "xtick.top":  True,  "ytick.right": True,
+    "xtick.direction":   "out", "ytick.direction": "out",
+    "xtick.top":  False, "ytick.right": False,
     "xtick.major.size":  4,   "ytick.major.size": 4,
     "xtick.minor.size":  2.5, "ytick.minor.size": 2.5,
 })
@@ -139,9 +140,9 @@ for samp_lbl, fname in SAMPLES:
     ax.set_xlabel(r"ln|j| (j in A/cm$^2$)", fontsize=10)
     ax.set_ylabel(r"Total Overpotential ($\eta$)", fontsize=10)
     ax.set_title(f"{samp_lbl} — O$_2$, 1.5 bar$_g$", fontsize=9, pad=6)
-    ax.xaxis.set_major_locator(plt.MultipleLocator(1))
-    ax.yaxis.set_major_locator(plt.MultipleLocator(0.1))
-    ax.tick_params(which="both", direction="in", top=True, right=True)
+    ax.xaxis.set_major_locator(plt.MultipleLocator(2))
+    ax.yaxis.set_major_locator(plt.MultipleLocator(0.2))
+    ax.tick_params(which="both", direction="out", top=False, right=False)
     ax.minorticks_on()
 
     ax.legend(loc="lower left", fontsize=8, markerscale=1.6,
@@ -154,7 +155,7 @@ for samp_lbl, fname in SAMPLES:
 
     plt.tight_layout()
     safe = samp_lbl.replace(" ", "")
-    out  = os.path.join(OUT, f"Tafel_{safe}_O2BP_alt.png")
+    out  = os.path.join(TAFEL_DIR, f"Tafel_{safe}_O2BP_alt.png")
     fig.savefig(out, dpi=300, bbox_inches="tight")
     plt.close(fig)
     print(f"  -> Saved: {os.path.basename(out)}\n")

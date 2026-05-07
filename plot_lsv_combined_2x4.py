@@ -15,22 +15,27 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 BASE = os.path.dirname(os.path.abspath(__file__))
 AREA = 5.0   # cm²
 
+FS_TICK   = 22
+FS_LABEL  = 22
+FS_LEGEND = 17
+FS_ANNOT  = 22
+
 # ---------------------------------------------------------------------------
 # Style
 # ---------------------------------------------------------------------------
 plt.rcParams.update({
     "font.family":       "Arial",
-    "font.size":         8,
-    "axes.linewidth":    0.8,
-    "xtick.major.width": 0.8, "ytick.major.width": 0.8,
-    "xtick.minor.width": 0.5, "ytick.minor.width": 0.5,
-    "xtick.direction":   "in", "ytick.direction": "in",
-    "xtick.top":  True,  "ytick.right": True,
-    "xtick.major.size":  4,   "ytick.major.size":  4,
-    "xtick.minor.size":  2.5, "ytick.minor.size":  2.5,
+    "font.size":         FS_TICK,
+    "axes.linewidth":    1.0,
+    "xtick.major.width": 1.2, "ytick.major.width": 1.2,
+    "xtick.minor.width": 0.8, "ytick.minor.width": 0.8,
+    "xtick.direction":   "out", "ytick.direction": "out",
+    "xtick.top":  False, "ytick.right": False,
+    "xtick.major.size":  5,   "ytick.major.size":  5,
+    "xtick.minor.size":  3,   "ytick.minor.size":  3,
     "legend.frameon":    True, "legend.framealpha": 0.9,
-    "legend.edgecolor":  "none", "legend.fontsize": 7,
-    "lines.linewidth":   1.4,
+    "legend.edgecolor":  "none",
+    "lines.linewidth":   1.6,
 })
 
 # ---------------------------------------------------------------------------
@@ -52,7 +57,7 @@ MAIN_ORDER  = ["CN BM",     "KB BM",     "VC Polyol", "AB Polyol"]
 OTHER_ORDER = ["CN Polyol", "KB Polyol", "VC BM",     "AB BM"]
 
 # ---------------------------------------------------------------------------
-# File-name lookup  (cond_folder, sample) → stem
+# File-name lookup
 # ---------------------------------------------------------------------------
 FNAMES = {
     ("O2",    "CN BM"):     "CN BM o2",
@@ -92,10 +97,6 @@ FNAMES = {
     ("Air BP","AB Polyol"): "AB Polyol 1.5bp air",
 }
 
-# ---------------------------------------------------------------------------
-# Row order: Air 0 bar | Air 1.5 bar | O2 0 bar | O2 1.5 bar
-# (cond_folder, gas_str, bp_str, dur75_subdir, xlim, pmax)
-# ---------------------------------------------------------------------------
 ROWS = [
     ("Air",    "H$_2$/Air",   "0 bar$_g$",   "75K",  1500, 450),
     ("Air BP", "H$_2$/Air",   "1.5 bar$_g$", "75K",  2500, 700),
@@ -103,17 +104,13 @@ ROWS = [
     ("O2 BP",  "H$_2$/O$_2$", "1.5 bar$_g$", "75k",  3500, 1000),
 ]
 
-# Uniform axis limits applied to ALL subplots so every panel shares the same scale.
 XLIM_ALL = 3500
 PMAX_ALL = 1000
 
-DURS = [("BOL", "BOL", "-"), ("30K", "30K", "--"), ("75K", None, ":")]
-
 # ---------------------------------------------------------------------------
-# Data loader  (reads from individual edited/unchanged xlsx files)
+# Data loader
 # ---------------------------------------------------------------------------
 def load_iv(cond_folder, dur_dir, fname):
-    # Only use the Edited/ subfolder — root .xlsx files are BOL copies, not real dur data
     folder = os.path.join(BASE, "Overpotnital", cond_folder, dur_dir, "Edited")
     for sfx in ("_edited.xlsx", "_unchanged.xlsx"):
         p = os.path.join(folder, fname + sfx)
@@ -132,25 +129,43 @@ def load_iv(cond_folder, dur_dir, fname):
             return I_d, V, I_d * V
     return None, None, None
 
+
+def _apply_ax_style(ax_v, ax_p):
+    for ax in (ax_v, ax_p):
+        ax.set_xlim(0, XLIM_ALL)
+        ax.minorticks_on()
+        ax.xaxis.set_major_locator(plt.MultipleLocator(1000))
+        ax.xaxis.set_minor_locator(plt.MultipleLocator(500))
+    ax_v.set_ylim(0.2, 1.0)
+    ax_v.yaxis.set_major_locator(plt.MultipleLocator(0.2))
+    ax_p.set_ylim(0, PMAX_ALL)
+    ax_p.yaxis.set_major_locator(plt.MultipleLocator(200))
+
+
+def _add_shared_labels(fig, axes):
+    """Single centered x-title, left y-title, left-of-col-1 power density title."""
+    fig.supxlabel("Current Density (mAcm$^{-2}$)", fontsize=FS_LABEL, y=0.03)
+    fig.supylabel("Cell Voltage (V)", fontsize=FS_LABEL)
+    # Power Density label on left side of the 2nd column
+    xl = axes[0, 1].get_position().x0
+    fig.text(xl - 0.07, 0.5, "Power Density (mWcm$^{-2}$)",
+             va="center", ha="center", rotation=90, fontsize=FS_LABEL)
+
+
 # ---------------------------------------------------------------------------
-# Combined figure builder
+# Combined figure (all durabilities)
 # ---------------------------------------------------------------------------
 def build_combined(sample_order, color_map, group_name):
     nrows = len(ROWS)
-    fig, axes = plt.subplots(
-        nrows, 2,
-        figsize=(7.2, 3.2 * nrows),
-        dpi=300,
-        constrained_layout=True,
-    )
+    fig, axes = plt.subplots(nrows, 2, figsize=(12, 4.0 * nrows), dpi=300)
+    fig.subplots_adjust(hspace=0.30, wspace=0.35,
+                        left=0.10, right=0.86, bottom=0.08, top=0.97)
 
-    for row_idx, (cond_folder, gas_str, bp_str, k75, xlim, pmax) in enumerate(ROWS):
+    for row_idx, (cond_folder, gas_str, bp_str, k75, _, _) in enumerate(ROWS):
         ax_v = axes[row_idx, 0]
         ax_p = axes[row_idx, 1]
-
         durs = [("BOL", "BOL", "-"), ("30K", "30K", "--"), ("75K", k75, ":")]
 
-        # Plot all samples × durabilities
         for samp in sample_order:
             clr   = color_map[samp]
             fname = FNAMES[(cond_folder, samp)]
@@ -159,57 +174,39 @@ def build_combined(sample_order, color_map, group_name):
                 if I is None:
                     print(f"  MISSING {cond_folder}/{dur_dir}/{fname}")
                     continue
-                ax_v.plot(I, V, ls=ls, color=clr, lw=1.4)
-                ax_p.plot(I, P, ls=ls, color=clr, lw=1.4)
+                ax_v.plot(I, V, ls=ls, color=clr, lw=1.6)
+                ax_p.plot(I, P, ls=ls, color=clr, lw=1.6)
 
+        _apply_ax_style(ax_v, ax_p)
 
-        # Axes formatting  (uniform scale across all rows)
-        for ax in (ax_v, ax_p):
-            ax.set_xlim(0, XLIM_ALL)
-            ax.tick_params(which="both", direction="out", top=False, right=False)
-            ax.minorticks_on()
-            ax.xaxis.set_major_locator(plt.MultipleLocator(1000))
-            ax.set_xlabel("Current Density (mAcm$^{-2}$)", fontsize=8)
-
-        ax_v.set_ylim(0.2, 1.0)
-        ax_v.set_ylabel("Cell Voltage (V)", fontsize=8)
-        ax_v.yaxis.set_major_locator(plt.MultipleLocator(0.2))
-
-        ax_p.set_ylim(0, PMAX_ALL)
-        ax_p.set_ylabel("Power Density (mWcm$^{-2}$)", fontsize=8)
-        ax_p.yaxis.set_major_locator(plt.MultipleLocator(200))
-
-        # Condition annotation in all left (I-V) panels
         annot = (
-            f"{gas_str}\nRH100\nPt 5 wt%\n"
+            f"{gas_str}\n"
             r"0.05 mg$_\mathregular{Pt}$/cm$^2$"
-            f"\nIC 0.8, N212\n{bp_str}"
+            f"\n{bp_str}"
         )
         ax_v.text(0.97, 0.97, annot,
                   transform=ax_v.transAxes, ha="right", va="top",
-                  fontsize=7, linespacing=1.45)
+                  fontsize=FS_ANNOT, linespacing=1.45)
 
-        # Legends — top row only
         if row_idx == 0:
-            # Durability legend in top-left I-V panel
             dur_handles = [
-                mlines.Line2D([], [], color="gray", ls="-",  lw=1.4, label="BOL"),
-                mlines.Line2D([], [], color="gray", ls="--", lw=1.4, label="30K"),
-                mlines.Line2D([], [], color="gray", ls=":",  lw=1.5, label="75K"),
+                mlines.Line2D([], [], color="gray", ls="-",  lw=1.6, label="BOL"),
+                mlines.Line2D([], [], color="gray", ls="--", lw=1.6, label="30K"),
+                mlines.Line2D([], [], color="gray", ls=":",  lw=1.6, label="75K"),
             ]
-            leg1 = ax_v.legend(handles=dur_handles, loc="lower left",
-                               fontsize=7, handlelength=2.5,
-                               borderpad=0.5, labelspacing=0.3)
-            ax_v.add_artist(leg1)
+            ax_v.legend(handles=dur_handles, loc="lower right",
+                        fontsize=FS_LEGEND, handlelength=2.5,
+                        borderpad=0.5, labelspacing=0.3)
 
-            # Sample legend in top-right power panel
             samp_handles = [
                 mlines.Line2D([], [], color=color_map[s], ls="-", lw=1.8, label=s)
                 for s in sample_order
             ]
-            ax_p.legend(handles=samp_handles, loc="upper right",
-                        fontsize=7, handlelength=1.6,
+            ax_p.legend(handles=samp_handles, loc="lower right",
+                        fontsize=FS_LEGEND, handlelength=1.6,
                         borderpad=0.5, labelspacing=0.3)
+
+    _add_shared_labels(fig, axes)
 
     out_dir = os.path.join(BASE, "Durability I-V figure")
     os.makedirs(out_dir, exist_ok=True)
@@ -220,18 +217,15 @@ def build_combined(sample_order, color_map, group_name):
 
 
 # ---------------------------------------------------------------------------
-# BOL-only combined figure  (all 8 samples, colour = support, ls = method)
+# BOL-only figure
 # ---------------------------------------------------------------------------
-
-# Colour by carbon support, line style by synthesis method
 SUPPORT_CLR = {
-    "CN": "#1f7a1f",   # dark green
-    "KB": "#56b4e9",   # sky blue
-    "VC": "#000000",   # black
-    "AB": "#e69f00",   # amber
+    "CN": "#1f7a1f",
+    "KB": "#56b4e9",
+    "VC": "#000000",
+    "AB": "#e69f00",
 }
 
-# (fname_key, color, linestyle, label)
 BOL_MAIN_SAMPLES = [
     ("CN BM",     SUPPORT_CLR["CN"], "-",  "CN BM"),
     ("KB BM",     SUPPORT_CLR["KB"], "-",  "KB BM"),
@@ -247,17 +241,12 @@ BOL_OTHER_SAMPLES = [
 
 
 def build_bol_figure(sample_list, group_name):
-    """One BOL-only 2×4 figure for a sample group. Legend + condition text
-    appear only in the top-left (row 0, col 0) panel."""
     nrows = len(ROWS)
-    fig, axes = plt.subplots(
-        nrows, 2,
-        figsize=(7.2, 3.2 * nrows),
-        dpi=300,
-        constrained_layout=True,
-    )
+    fig, axes = plt.subplots(nrows, 2, figsize=(12, 4.0 * nrows), dpi=300)
+    fig.subplots_adjust(hspace=0.30, wspace=0.35,
+                        left=0.10, right=0.86, bottom=0.08, top=0.97)
 
-    for row_idx, (cond_folder, gas_str, bp_str, k75, xlim, pmax) in enumerate(ROWS):
+    for row_idx, (cond_folder, gas_str, bp_str, k75, _, _) in enumerate(ROWS):
         ax_v = axes[row_idx, 0]
         ax_p = axes[row_idx, 1]
 
@@ -267,50 +256,33 @@ def build_bol_figure(sample_list, group_name):
             if I is None:
                 print(f"  MISSING BOL {cond_folder}/{fname}")
                 continue
-            ax_v.plot(I, V, ls=ls, color=clr, lw=1.4)
-            ax_p.plot(I, P, ls=ls, color=clr, lw=1.4)
-
-            # Dot at max-power point on I-V curve
+            ax_v.plot(I, V, ls=ls, color=clr, lw=1.6)
+            ax_p.plot(I, P, ls=ls, color=clr, lw=1.6)
             idx = np.argmax(P)
-            ax_v.plot(I[idx], V[idx], marker="o", ms=4,
+            ax_v.plot(I[idx], V[idx], marker="o", ms=6,
                       color=clr, zorder=5, linestyle="none")
 
-        # Axes formatting  (uniform scale across all rows)
-        for ax in (ax_v, ax_p):
-            ax.set_xlim(0, XLIM_ALL)
-            ax.tick_params(which="both", direction="out", top=False, right=False)
-            ax.minorticks_on()
-            ax.xaxis.set_major_locator(plt.MultipleLocator(1000))
-            ax.set_xlabel("Current Density (mAcm$^{-2}$)", fontsize=8)
+        _apply_ax_style(ax_v, ax_p)
 
-        ax_v.set_ylim(0.2, 1.0)
-        ax_v.set_ylabel("Cell Voltage (V)", fontsize=8)
-        ax_v.yaxis.set_major_locator(plt.MultipleLocator(0.2))
-
-        ax_p.set_ylim(0, PMAX_ALL)
-        ax_p.set_ylabel("Power Density (mWcm$^{-2}$)", fontsize=8)
-        ax_p.yaxis.set_major_locator(plt.MultipleLocator(200))
-
-        # Legend only in top-left I-V panel
-        if row_idx == 0:
-            samp_handles = [
-                mlines.Line2D([], [], color=clr, ls=ls, lw=1.4, label=lbl)
-                for _, clr, ls, lbl in sample_list
-            ]
-            leg = ax_v.legend(handles=samp_handles, loc="lower left",
-                              fontsize=7, handlelength=2.0,
-                              borderpad=0.5, labelspacing=0.3)
-            ax_v.add_artist(leg)
-
-        # Condition annotation in all left (I-V) panels
         annot = (
-            f"{gas_str}\nRH100\nPt 5 wt%\n"
+            f"{gas_str}\n"
             r"0.05 mg$_\mathregular{Pt}$/cm$^2$"
-            f"\nIC 0.8, N212\n{bp_str}"
+            f"\n{bp_str}"
         )
         ax_v.text(0.97, 0.97, annot,
                   transform=ax_v.transAxes, ha="right", va="top",
-                  fontsize=7, linespacing=1.45)
+                  fontsize=FS_ANNOT, linespacing=1.45)
+
+        if row_idx == 0:
+            samp_handles = [
+                mlines.Line2D([], [], color=clr, ls=ls, lw=1.6, label=lbl)
+                for _, clr, ls, lbl in sample_list
+            ]
+            ax_p.legend(handles=samp_handles, loc="lower right",
+                        fontsize=FS_LEGEND, handlelength=2.0,
+                        borderpad=0.5, labelspacing=0.3)
+
+    _add_shared_labels(fig, axes)
 
     out_dir = os.path.join(BASE, "Durability I-V figure")
     os.makedirs(out_dir, exist_ok=True)
