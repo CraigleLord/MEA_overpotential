@@ -159,8 +159,8 @@ ANNOT = (
 
 
 def draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
-               fs=7, lw=0.8, show_legend=False, show_annot=False,
-               annot_str="", ymax=1.2):
+               fs=21, lw=1.6, show_legend=False, show_annot=False,
+               annot_str="", ymax=1.2, show_xlabel=False, show_ylabel=False):
 
     # Trim fold-back: only use data up to the peak current density
     idx_peak = int(np.argmax(I_mA))
@@ -196,23 +196,36 @@ def draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
     i_m      = 500.0
     v_kin_m  = float(np.interp(i_m, I_mA, V_kin_c))
     v_meas_m = float(np.interp(i_m, I_mA, V))
-    ax.plot(i_m, v_kin_m,  marker="o", ms=3, color="red", linestyle="none", zorder=10)
-    ax.plot(i_m, v_meas_m, marker="o", ms=3, color="red", linestyle="none", zorder=10)
-    ax.text(i_m + 60, v_kin_m,  f"{v_kin_m:.2f}",
-            color="red", fontsize=fs - 1, va="center", ha="left")
-    ax.text(i_m + 60, v_meas_m, f"{v_meas_m:.2f}",
-            color="red", fontsize=fs - 1, va="center", ha="left")
+    ax.plot(i_m, v_kin_m,  marker="o", ms=6, color="red", linestyle="none", zorder=10)
+    ax.plot(i_m, v_meas_m, marker="o", ms=6, color="red", linestyle="none", zorder=10)
+
+    # Separate labels if the two values are too close to read without overlap
+    min_gap = 0.10          # minimum V between label centres (~1.2× font height)
+    mid = (v_kin_m + v_meas_m) / 2
+    if abs(v_kin_m - v_meas_m) < min_gap:
+        v_kin_txt  = mid + min_gap / 2
+        v_meas_txt = mid - min_gap / 2
+    else:
+        v_kin_txt  = v_kin_m
+        v_meas_txt = v_meas_m
+
+    ax.text(i_m + 100, v_kin_txt,  f"{v_kin_m:.2f}",
+            color="red", fontsize=fs, va="center", ha="left")
+    ax.text(i_m + 100, v_meas_txt, f"{v_meas_m:.2f}",
+            color="red", fontsize=fs, va="center", ha="left")
 
     ax.set_xlim(0, 3500)
     ax.set_ylim(0.2, ymax)
     ax.tick_params(direction="out", top=False, right=False,
-                   labelsize=fs, width=0.6, length=3)
-    ax.set_xlabel(r"Current Density (mAcm$^{-2}$)", fontsize=fs)
-    ax.set_ylabel("Cell Voltage (V)", fontsize=fs)
+                   labelsize=fs, width=1.2, length=5)
+    if show_xlabel:
+        ax.set_xlabel(r"Current Density (mAcm$^{-2}$)", fontsize=fs)
+    if show_ylabel:
+        ax.set_ylabel("Cell Voltage (V)", fontsize=fs)
     ax.xaxis.set_major_locator(plt.MultipleLocator(1000))
     ax.yaxis.set_major_locator(plt.MultipleLocator(0.2))
     for spine in ax.spines.values():
-        spine.set_linewidth(0.6)
+        spine.set_linewidth(1.2)
 
     if show_legend:
         patches = [
@@ -221,14 +234,14 @@ def draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
             mpatches.Patch(color=C_PRO,  label="Proton"),
             mpatches.Patch(color=C_MASS, label="Mass Transport"),
         ]
-        ax.legend(handles=patches, loc="center right", fontsize=fs - 1,
+        ax.legend(handles=patches, loc="upper right", fontsize=10,
                   frameon=True, facecolor="white", edgecolor="black",
-                  handlelength=1.2, borderpad=0.4, labelspacing=0.2)
+                  handlelength=1.0, borderpad=0.3, labelspacing=0.15)
 
     if show_annot and annot_str:
         ax.text(0.98, 0.97, annot_str,
                 transform=ax.transAxes, ha="right", va="top",
-                fontsize=fs - 1, linespacing=1.4)
+                fontsize=fs, linespacing=1.4)
 
 
 def _empty_panel(ax, fs, ymax):
@@ -244,19 +257,22 @@ def _empty_panel(ax, fs, ymax):
 def build_bol_grid(sample_list, group_name):
     ncols = len(BOL_CONDITIONS)
     nrows = len(sample_list)
-    fs    = 7
+    fs        = 18
+    label_x   = -0.022 * fs   # scales with fs: -0.462 at fs=21, -0.396 at fs=18
+    title_pad = fs * 0.67      # scales with fs: ~14 at fs=21, ~12 at fs=18
 
     fig, axes = plt.subplots(
         nrows, ncols,
-        figsize=(2.75 * ncols, 2.4 * nrows),
+        figsize=(4.0 * ncols, 3.5 * nrows),
         dpi=300,
-        constrained_layout=True,
     )
+    fig.subplots_adjust(hspace=0.35, wspace=0.35)
 
     for row_idx, samp in enumerate(sample_list):
         for col_idx, (cond_folder, dur_folder, cond_label) in enumerate(BOL_CONDITIONS):
-            ax   = axes[row_idx, col_idx]
-            ymax = 1.18 if " BP" not in cond_folder else 1.2
+            ax      = axes[row_idx, col_idx]
+            ymax    = 1.18
+            is_topleft = (row_idx == 0 and col_idx == 0)
             stem = FILE_STEMS.get((cond_folder, samp))
             fp   = find_file(cond_folder, dur_folder, stem) if stem else None
 
@@ -267,24 +283,22 @@ def build_bol_grid(sample_list, group_name):
                 I_mA, V, R_ohm, R_pro, T_K, P_H2, P_O2, intercept, slope = read_excel(fp)
                 erev = calc_erev(T_K, P_H2, P_O2)
                 draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
-                           fs=fs, lw=0.9,
-                           show_legend=(row_idx == 0 and col_idx == 0),
-                           show_annot=(row_idx == 0 and col_idx == 0),
-                           annot_str=ANNOT, ymax=ymax)
+                           fs=fs, lw=1.6,
+                           show_legend=is_topleft,
+                           show_annot=False,
+                           annot_str=ANNOT, ymax=ymax,
+                           show_xlabel=is_topleft, show_ylabel=is_topleft)
             except Exception as e:
                 print(f"  ERROR {samp}/{cond_folder}: {e}")
                 ax.text(0.5, 0.5, "error", transform=ax.transAxes,
                         ha="center", va="center", fontsize=fs)
 
             if row_idx == 0:
-                ax.set_title(cond_label, fontsize=fs + 2, fontweight="bold", pad=4)
+                ax.set_title(cond_label, fontsize=fs, fontweight="bold", pad=title_pad)
             if col_idx == 0:
-                ax.set_ylabel("Cell Voltage (V)", fontsize=fs, labelpad=4)
-                ax.text(-0.22, 0.5, LABELS[samp],
-                        transform=ax.transAxes, fontsize=fs + 2, fontweight="bold",
+                ax.text(label_x, 0.5, LABELS[samp],
+                        transform=ax.transAxes, fontsize=fs, fontweight="bold",
                         ha="center", va="center", rotation=90, clip_on=False)
-            else:
-                ax.set_ylabel("Cell Voltage (V)", fontsize=fs)
 
     out = os.path.join(OUT_DIR, f"Overpot_grid_{group_name}.png")
     fig.savefig(out, dpi=300, bbox_inches="tight")
@@ -298,19 +312,22 @@ def build_bol_grid(sample_list, group_name):
 def build_dur_grid(sample_list, cond_folder, safe_name, is_15bp, group_name):
     nrows = len(DURS)
     ncols = len(sample_list)
-    fs    = 7
-    ymax  = 1.2 if is_15bp else 1.18
+    fs        = 18
+    ymax      = 1.18
+    label_x   = -0.022 * fs
+    title_pad = fs * 0.67
 
     fig, axes = plt.subplots(
         nrows, ncols,
-        figsize=(2.75 * ncols, 2.4 * nrows),
+        figsize=(4.0 * ncols, 3.5 * nrows),
         dpi=300,
-        constrained_layout=True,
     )
+    fig.subplots_adjust(hspace=0.35, wspace=0.35)
 
     for row_idx, (dur_label, dur_folder) in enumerate(DURS):
         for col_idx, samp in enumerate(sample_list):
-            ax   = axes[row_idx, col_idx]
+            ax         = axes[row_idx, col_idx]
+            is_topleft = (row_idx == 0 and col_idx == 0)
             stem = FILE_STEMS.get((cond_folder, samp))
             fp   = find_file(cond_folder, dur_folder, stem) if stem else None
 
@@ -321,23 +338,21 @@ def build_dur_grid(sample_list, cond_folder, safe_name, is_15bp, group_name):
                     I_mA, V, R_ohm, R_pro, T_K, P_H2, P_O2, intercept, slope = read_excel(fp)
                     erev = calc_erev(T_K, P_H2, P_O2)
                     draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
-                               fs=fs, lw=0.9,
-                               show_legend=(row_idx == 0 and col_idx == 0),
-                               ymax=ymax)
+                               fs=fs, lw=1.6,
+                               show_legend=is_topleft,
+                               ymax=ymax,
+                               show_xlabel=is_topleft, show_ylabel=is_topleft)
                 except Exception as e:
                     print(f"  ERROR {samp}/{dur_label}/{cond_folder}: {e}")
                     ax.text(0.5, 0.5, "error", transform=ax.transAxes,
                             ha="center", va="center", fontsize=fs)
 
             if row_idx == 0:
-                ax.set_title(LABELS[samp], fontsize=fs + 2, fontweight="bold", pad=4)
+                ax.set_title(LABELS[samp], fontsize=fs, fontweight="bold", pad=title_pad)
             if col_idx == 0:
-                ax.set_ylabel("Cell Voltage (V)", fontsize=fs, labelpad=4)
-                ax.text(-0.22, 0.5, dur_label,
-                        transform=ax.transAxes, fontsize=fs + 2, fontweight="bold",
+                ax.text(label_x, 0.5, dur_label,
+                        transform=ax.transAxes, fontsize=fs, fontweight="bold",
                         ha="center", va="center", rotation=90, clip_on=False)
-            else:
-                ax.set_ylabel("Cell Voltage (V)", fontsize=fs)
 
     out = os.path.join(OUT_DIR, f"Overpot_dur_{safe_name}_{group_name}.png")
     fig.savefig(out, dpi=300, bbox_inches="tight")
