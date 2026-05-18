@@ -1,10 +1,8 @@
 """
-Fixed overpotential breakdown plots — all colored bands clipped to the measured I-V curve.
-Generates:
-  - Overpot_grid_Main/Other.png          (4-sample × 4-condition BOL grid)
-  - Overpot_dur_*_Main/Other.png         (4-sample × 3-durability per condition)
-Output: Durability I-V figure/tafel plot alt/overpotential decoupled/
-Reads:  Durability I-V figure/tafel plot alt/Overpotential DATA raw alt/
+All Overpot_dur_* figures with red markers at 300 mA/cm²
+(instead of the 500 mA/cm² used in the originals).
+Format identical to plot_overpotential_all_fixed.py.
+Output: Figure Plots (Claude AI)/Overpot_dur_*_300mA.png
 """
 
 import os, sys, math
@@ -17,15 +15,12 @@ import openpyxl
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-BASE    = os.path.dirname(os.path.abspath(__file__))
-ALT_DIR = os.path.join(BASE, "Durability I-V figure", "tafel plot alt")
-ALT_DATA = os.path.join(ALT_DIR, "Overpotential DATA raw alt")
-OUT_DIR  = os.path.join(ALT_DIR, "overpotential decoupled")
+BASE     = os.path.dirname(os.path.abspath(__file__))
+ALT_DATA = os.path.join(BASE, "Durability I-V figure", "tafel plot alt",
+                         "Overpotential DATA raw alt")
+OUT_DIR  = os.path.join(BASE, "Figure Plots (Claude AI)")
 os.makedirs(OUT_DIR, exist_ok=True)
 
-# ---------------------------------------------------------------------------
-# Sample groups
-# ---------------------------------------------------------------------------
 MAIN_SAMPLES  = ["CN BM",     "KB BM",     "VC Polyol", "AB Polyol"]
 OTHER_SAMPLES = ["CN Polyol", "KB Polyol", "VC BM",     "AB BM"]
 
@@ -36,23 +31,13 @@ LABELS = {
     "VC BM":     "VC-BM",   "AB BM":     "AB-BM",
 }
 
-# Durability rows for the dur-grid figures
 DURS = [("BOL", "BOL"), ("30K", "30K"), ("75K", "75K")]
 
-# Conditions
-ALL_CONDITIONS = [
-    ("Air",    "Air_0bp",  "Air 0 BP",      False),
-    ("Air BP", "Air_15bp", "Air 1.5 BP",    True),
-    ("O2",     "O2_0bp",   r"O$_2$ 0 BP",   False),
-    ("O2 BP",  "O2_15bp",  r"O$_2$ 1.5 BP", True),
-]
-
-# Conditions as used by the BOL-only grid (label text only)
-BOL_CONDITIONS = [
-    ("Air",    "BOL", "Air 0 BP"),
-    ("Air BP", "BOL", "Air 1.5 BP"),
-    ("O2",     "BOL", r"O$_2$ 0 BP"),
-    ("O2 BP",  "BOL", r"O$_2$ 1.5 BP"),
+CONDITIONS = [
+    ("Air",    "Air_0bp",  "Air 0 BP",       False),
+    ("Air BP", "Air_15bp", "Air 1.5 BP",     True),
+    ("O2",     "O2_0bp",   r"O$_2$ 0 BP",    False),
+    ("O2 BP",  "O2_15bp",  r"O$_2$ 1.5 BP",  True),
 ]
 
 FILE_STEMS = {
@@ -93,9 +78,14 @@ FILE_STEMS = {
     ("O2 BP", "AB BM"):      "AB BM 1.5bp O2",
 }
 
-# ---------------------------------------------------------------------------
-# I/O helpers
-# ---------------------------------------------------------------------------
+C_KIN  = "#FFA07A"
+C_OHM  = "#90C090"
+C_PRO  = "#9090D8"
+C_MASS = "#F0E860"
+
+MARKER_I = 300.0   # mA/cm²
+
+
 def calc_erev(T_K, p_h2_kPa, p_o2_kPa):
     ph = p_h2_kPa / 101.3
     po = p_o2_kPa / 101.3
@@ -143,26 +133,11 @@ def find_file(cond_folder, dur_folder, stem):
                 return p
     return None
 
-# ---------------------------------------------------------------------------
-# Panel drawing — all bands clipped to measured I-V curve
-# ---------------------------------------------------------------------------
-C_KIN  = "#FFA07A"
-C_OHM  = "#90C090"
-C_PRO  = "#9090D8"
-C_MASS = "#F0E860"
-
-ANNOT = (
-    "RH100\nPt 5 wt%\n"
-    r"0.05 mg$_\mathregular{Pt}$/cm$^2$"
-    "\nIC 0.8, N212"
-)
-
 
 def draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
-               fs=21, lw=1.6, show_legend=False, show_annot=False,
-               annot_str="", ymax=1.2, legend_frameon=False):
+               fs=18, lw=1.6, show_legend=False, ymax=1.18,
+               legend_frameon=False):
 
-    # Trim fold-back: only use data up to the peak current density
     idx_peak = int(np.argmax(I_mA))
     I_mA  = I_mA[:idx_peak + 1]
     V     = V[:idx_peak + 1]
@@ -178,29 +153,27 @@ def draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
 
     V_erev = np.full_like(I_mA, erev)
     V_kin  = erev - eta_kin
-    V_ohm  = V_kin - eta_ohm
-    V_pro  = V_ohm - eta_pro
+    V_ohm_ = V_kin - eta_ohm
+    V_pro_ = V_ohm_ - eta_pro
 
-    # Clip every boundary so no colored region extends below the measured curve
-    V_kin_c = np.maximum(V_kin, V)
-    V_ohm_c = np.maximum(V_ohm, V)
-    V_pro_c = np.maximum(V_pro, V)
+    V_kin_c  = np.maximum(V_kin,  V)
+    V_ohm_c  = np.maximum(V_ohm_, V)
+    V_pro_c  = np.maximum(V_pro_, V)
 
-    ax.fill_between(I_mA, V_kin_c, V_erev,  color=C_KIN,  alpha=0.85, label="Kinetic")
-    ax.fill_between(I_mA, V_ohm_c, V_kin_c, color=C_OHM,  alpha=0.85, label="Ohmic")
-    ax.fill_between(I_mA, V_pro_c, V_ohm_c, color=C_PRO,  alpha=0.85, label="Proton")
-    ax.fill_between(I_mA, V,       V_pro_c, color=C_MASS, alpha=0.85, label="Mass Transport")
+    ax.fill_between(I_mA, V_kin_c,  V_erev,   color=C_KIN,  alpha=0.85, label="Kinetic")
+    ax.fill_between(I_mA, V_ohm_c,  V_kin_c,  color=C_OHM,  alpha=0.85, label="Ohmic")
+    ax.fill_between(I_mA, V_pro_c,  V_ohm_c,  color=C_PRO,  alpha=0.85, label="Proton")
+    ax.fill_between(I_mA, V,        V_pro_c,  color=C_MASS, alpha=0.85, label="Mass Transport")
 
     ax.plot(I_mA, V, color="black", linewidth=lw, zorder=5)
 
-    i_m      = 500.0
+    i_m      = MARKER_I
     v_kin_m  = float(np.interp(i_m, I_mA, V_kin_c))
     v_meas_m = float(np.interp(i_m, I_mA, V))
     ax.plot(i_m, v_kin_m,  marker="o", ms=6, color="red", linestyle="none", zorder=10)
     ax.plot(i_m, v_meas_m, marker="o", ms=6, color="red", linestyle="none", zorder=10)
 
-    # Separate labels if the two values are too close to read without overlap
-    min_gap = 0.10          # minimum V between label centres (~1.2× font height)
+    min_gap = 0.10
     mid = (v_kin_m + v_meas_m) / 2
     if abs(v_kin_m - v_meas_m) < min_gap:
         v_kin_txt  = mid + min_gap / 2
@@ -234,84 +207,12 @@ def draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
                   frameon=legend_frameon, facecolor="none", edgecolor="black",
                   handlelength=1.0, borderpad=0.3, labelspacing=0.15)
 
-    if show_annot and annot_str:
-        ax.text(0.98, 0.97, annot_str,
-                transform=ax.transAxes, ha="right", va="top",
-                fontsize=fs, linespacing=1.4)
 
-
-def _empty_panel(ax, fs, ymax):
-    ax.text(0.5, 0.5, "no data", transform=ax.transAxes,
-            ha="center", va="center", fontsize=fs)
-    ax.set_xlim(0, 3500)
-    ax.set_ylim(0.2, ymax)
-
-
-# ---------------------------------------------------------------------------
-# 1.  BOL-only 4×4 grid  (rows=samples, cols=conditions)
-# ---------------------------------------------------------------------------
-def build_bol_grid(sample_list, group_name):
-    ncols = len(BOL_CONDITIONS)
-    nrows = len(sample_list)
-    fs        = 18
-    label_x   = -0.55
-    title_pad = fs * 0.67      # scales with fs: ~14 at fs=21, ~12 at fs=18
-
-    fig, axes = plt.subplots(
-        nrows, ncols,
-        figsize=(4.0 * ncols, 3.5 * nrows),
-        dpi=300,
-    )
-    fig.subplots_adjust(hspace=0.25, wspace=0.25)
-    fig.supxlabel(r"Current Density (mAcm$^{-2}$)", fontsize=fs, y=0.06)
-    fig.text(0.07, 0.5, "Cell Voltage (V)", ha='center', va='center',
-             rotation='vertical', fontsize=fs)
-
-    for row_idx, samp in enumerate(sample_list):
-        for col_idx, (cond_folder, dur_folder, cond_label) in enumerate(BOL_CONDITIONS):
-            ax      = axes[row_idx, col_idx]
-            ymax    = 1.18
-            is_topleft = (row_idx == 0 and col_idx == 0)
-            stem = FILE_STEMS.get((cond_folder, samp))
-            fp   = find_file(cond_folder, dur_folder, stem) if stem else None
-
-            if fp is None:
-                _empty_panel(ax, fs, ymax); continue
-
-            try:
-                I_mA, V, R_ohm, R_pro, T_K, P_H2, P_O2, intercept, slope = read_excel(fp)
-                erev = calc_erev(T_K, P_H2, P_O2)
-                draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
-                           fs=fs, lw=1.6,
-                           show_legend=is_topleft,
-                           show_annot=False,
-                           annot_str=ANNOT, ymax=ymax)
-            except Exception as e:
-                print(f"  ERROR {samp}/{cond_folder}: {e}")
-                ax.text(0.5, 0.5, "error", transform=ax.transAxes,
-                        ha="center", va="center", fontsize=fs)
-
-            if row_idx == 0:
-                ax.set_title(cond_label, fontsize=fs, fontweight="bold", pad=title_pad)
-            if col_idx == 0:
-                ax.text(label_x, 0.5, LABELS[samp],
-                        transform=ax.transAxes, fontsize=fs, fontweight="bold",
-                        ha="center", va="center", rotation=90, clip_on=False)
-
-    out = os.path.join(OUT_DIR, f"Overpot_grid_{group_name}.png")
-    fig.savefig(out, dpi=300, bbox_inches="tight")
-    plt.close(fig)
-    print(f"Saved: {out}")
-
-
-# ---------------------------------------------------------------------------
-# 2.  Durability grid  (rows=BOL/30K/75K, cols=samples) per condition
-# ---------------------------------------------------------------------------
 def build_dur_grid(sample_list, cond_folder, safe_name, is_15bp, group_name):
-    nrows = len(DURS)
-    ncols = len(sample_list)
+    nrows     = len(DURS)
+    ncols     = len(sample_list)
     fs        = 18
-    ymax      = 1.18
+    ymax      = 1.2 if is_15bp else 1.18
     label_x   = -0.55
     title_pad = fs * 0.67
 
@@ -322,8 +223,8 @@ def build_dur_grid(sample_list, cond_folder, safe_name, is_15bp, group_name):
     )
     fig.subplots_adjust(hspace=0.25, wspace=0.25)
     fig.supxlabel(r"Current Density (mAcm$^{-2}$)", fontsize=fs, y=0.04)
-    fig.text(0.07, 0.5, "Cell Voltage (V)", ha='center', va='center',
-             rotation='vertical', fontsize=fs)
+    fig.text(0.07, 0.5, "Cell Voltage (V)", ha="center", va="center",
+             rotation="vertical", fontsize=fs)
 
     for row_idx, (dur_label, dur_folder) in enumerate(DURS):
         for col_idx, samp in enumerate(sample_list):
@@ -333,7 +234,9 @@ def build_dur_grid(sample_list, cond_folder, safe_name, is_15bp, group_name):
             fp   = find_file(cond_folder, dur_folder, stem) if stem else None
 
             if fp is None:
-                _empty_panel(ax, fs, ymax)
+                ax.text(0.5, 0.5, "no data", transform=ax.transAxes,
+                        ha="center", va="center", fontsize=fs)
+                ax.set_xlim(0, 3500); ax.set_ylim(0.2, ymax)
             else:
                 try:
                     I_mA, V, R_ohm, R_pro, T_K, P_H2, P_O2, intercept, slope = read_excel(fp)
@@ -355,19 +258,13 @@ def build_dur_grid(sample_list, cond_folder, safe_name, is_15bp, group_name):
                         transform=ax.transAxes, fontsize=fs, fontweight="bold",
                         ha="center", va="center", rotation=90, clip_on=False)
 
-    out = os.path.join(OUT_DIR, f"Overpot_dur_{safe_name}_{group_name}.png")
+    out = os.path.join(OUT_DIR, f"Overpot_dur_{safe_name}_{group_name}_300mA.png")
     fig.savefig(out, dpi=300, bbox_inches="tight")
     plt.close(fig)
     print(f"Saved: {out}")
 
 
-# ---------------------------------------------------------------------------
-# Run all
-# ---------------------------------------------------------------------------
-build_bol_grid(MAIN_SAMPLES,  "Main")
-build_bol_grid(OTHER_SAMPLES, "Other")
-
-for cond_folder, safe_name, _, is_15bp in ALL_CONDITIONS:
+for cond_folder, safe_name, _, is_15bp in CONDITIONS:
     build_dur_grid(MAIN_SAMPLES,  cond_folder, safe_name, is_15bp, "Main")
     build_dur_grid(OTHER_SAMPLES, cond_folder, safe_name, is_15bp, "Other")
 
