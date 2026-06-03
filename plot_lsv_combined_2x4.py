@@ -9,6 +9,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
+from matplotlib.patches import Patch
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
@@ -17,7 +18,7 @@ AREA = 5.0   # cm²
 
 FS_TICK   = 22
 FS_LABEL  = 22
-FS_LEGEND = 17
+FS_LEGEND = 22
 FS_ANNOT  = 22
 
 # ---------------------------------------------------------------------------
@@ -142,30 +143,77 @@ def _apply_ax_style(ax_v, ax_p):
     ax_p.yaxis.set_major_locator(plt.MultipleLocator(200))
 
 
-def _add_shared_labels(fig, axes):
-    """Single centered x-title, left y-title, left-of-col-1 power density title."""
-    fig.supxlabel("Current Density (mAcm$^{-2}$)", fontsize=FS_LABEL, y=0.03)
+def _add_shared_labels(fig, axes, xlab_center=None):
+    """Shared axis titles. xlab_center: if given, places x-title there instead of supxlabel."""
+    if xlab_center is None:
+        fig.supxlabel("Current Density (mAcm$^{-2}$)", fontsize=FS_LABEL, y=0.03)
+    else:
+        fig.text(xlab_center, 0.03, "Current Density (mAcm$^{-2}$)",
+                 ha="center", va="bottom", fontsize=FS_LABEL)
     fig.supylabel("Cell Voltage (V)", fontsize=FS_LABEL)
-    # Power Density label on left side of the 2nd column
-    xl = axes[0, 1].get_position().x0
-    fig.text(xl - 0.07, 0.5, "Power Density (mWcm$^{-2}$)",
+    # Power Density label — centred in the gap between col 0 (I-V) and col 1 (Power)
+    x_pd = (axes[0, 0].get_position().x1 + axes[0, 1].get_position().x0) / 2 - 0.02
+    y_center_pd = (axes[0, 1].get_position().y1 + axes[-1, 1].get_position().y0) / 2
+    fig.text(x_pd, y_center_pd, "Power Density (mWcm$^{-2}$)",
              va="center", ha="center", rotation=90, fontsize=FS_LABEL)
+
+
+# ---------------------------------------------------------------------------
+# Bar chart helpers
+# ---------------------------------------------------------------------------
+BAR_DUR_ORDER = ["75K", "30K", "BOL"]          # stacking: bottom → top
+BAR_STYLES = {
+    "BOL": dict(facecolor="#cccccc", hatch="",    edgecolor="black", linewidth=0.5),
+    "30K": dict(facecolor="#999999", hatch="///", edgecolor="black", linewidth=0.5),
+    "75K": dict(facecolor="#555555", hatch="",    edgecolor="black", linewidth=0.5),
+}
+BAR_LABELS = {"BOL": "0 K", "30K": "30 K", "75K": "75 K"}
+
+
+def get_i_at_v(I, V, v_target=0.75):
+    if I is None or V is None or len(I) < 2:
+        return np.nan
+    order = np.argsort(V)
+    Vs, Is = V[order], I[order]
+    if v_target < Vs[0] or v_target > Vs[-1]:
+        return np.nan
+    return float(np.interp(v_target, Vs, Is))
 
 
 # ---------------------------------------------------------------------------
 # Combined figure (all durabilities)
 # ---------------------------------------------------------------------------
-def build_combined(sample_order, color_map, group_name):
+def build_combined(sample_order, color_map, group_name, v_target=0.75, suffix="", bar_ymax=None):
+    from matplotlib.gridspec import GridSpec
     nrows = len(ROWS)
-    fig, axes = plt.subplots(nrows, 2, figsize=(12, 4.0 * nrows), dpi=300)
-    fig.subplots_adjust(hspace=0.30, wspace=0.35,
-                        left=0.10, right=0.86, bottom=0.08, top=0.97)
+    fig = plt.figure(figsize=(18, 4.0 * nrows), dpi=300)
+
+    # Two GridSpecs so the gap between col 1-2 equals the gap between col 0-1.
+    # gs_lv: wspace=0.35 → gap ≈ 0.097 in figure coords (0.65 / 2.35 * 0.35)
+    # gs_bar starts 0.097 after gs_lv's right edge (0.73 + 0.097 ≈ 0.828)
+    gs_lv  = GridSpec(nrows, 2, figure=fig, left=0.08, right=0.73,
+                      bottom=0.08, top=0.97, hspace=0.30, wspace=0.35)
+    gs_bar = GridSpec(nrows, 1, figure=fig, left=0.830, right=0.97,
+                      bottom=0.08, top=0.97, hspace=0.30)
+
+    axes = np.empty((nrows, 3), dtype=object)
+    for r in range(nrows):
+        axes[r, 0] = fig.add_subplot(gs_lv[r, 0])
+        axes[r, 1] = fig.add_subplot(gs_lv[r, 1])
+        axes[r, 2] = fig.add_subplot(gs_bar[r, 0])
+
+    short_labels = list(sample_order)
+    x_pos = np.arange(len(sample_order))
+    bar_axes   = []
+    bar_totals = []  # max bar top per row, used to set a shared y-scale
 
     for row_idx, (cond_folder, gas_str, bp_str, k75, _, _) in enumerate(ROWS):
         ax_v = axes[row_idx, 0]
         ax_p = axes[row_idx, 1]
+        ax_b = axes[row_idx, 2]
         durs = [("BOL", "BOL", "-"), ("30K", "30K", "--"), ("75K", k75, ":")]
 
+        # ── I-V and Power curves ─────────────────────────────────────────────
         for samp in sample_order:
             clr   = color_map[samp]
             fname = FNAMES[(cond_folder, samp)]
@@ -206,14 +254,79 @@ def build_combined(sample_order, color_map, group_name):
                         fontsize=FS_LEGEND, handlelength=1.6,
                         borderpad=0.5, labelspacing=0.3)
 
-    _add_shared_labels(fig, axes)
+        # ── Bar chart: j @ 0.75 V (waterfall stack) ─────────────────────────
+        # Each segment is the INCREMENT so that the top edge of each cumulative
+        # segment equals the actual I@0.75V at that aging state:
+        #   top of 75K segment  = I_75K
+        #   top of 30K segment  = I_30K   (= I_75K + (I_30K - I_75K))
+        #   top of BOL segment  = I_BOL   (= I_30K + (I_BOL - I_30K))
+        dur_dirs = {"BOL": "BOL", "30K": "30K", "75K": k75}
+        i_abs = {}
+        for dur_key in ["BOL", "30K", "75K"]:
+            vals = []
+            for samp in sample_order:
+                fname = FNAMES[(cond_folder, samp)]
+                I, V, _ = load_iv(cond_folder, dur_dirs[dur_key], fname)
+                v = get_i_at_v(I, V, v_target)
+                vals.append(0.0 if np.isnan(v) else v)
+            i_abs[dur_key] = np.array(vals)
+
+        increments = {
+            "75K": i_abs["75K"],
+            "30K": np.maximum(i_abs["30K"] - i_abs["75K"], 0),
+            "BOL": np.maximum(i_abs["BOL"] - i_abs["30K"], 0),
+        }
+
+        bottoms = np.zeros(len(sample_order))
+        for dur_key in BAR_DUR_ORDER:   # ["75K", "30K", "BOL"] bottom → top
+            ax_b.bar(x_pos, increments[dur_key], bottom=bottoms, width=0.55,
+                     label=BAR_LABELS[dur_key], **BAR_STYLES[dur_key])
+            bottoms += increments[dur_key]
+
+        bar_axes.append(ax_b)
+        bar_totals.append(i_abs["BOL"].max())   # total height = I_BOL
+
+        ax_b.set_xticks(x_pos)
+        if row_idx == nrows - 1:
+            ax_b.set_xticklabels(short_labels, fontsize=FS_TICK, rotation=40, ha="right")
+        else:
+            ax_b.set_xticklabels([])
+        ax_b.tick_params(axis="y", labelsize=FS_TICK)
+        ax_b.tick_params(axis="x", which="minor", bottom=False)
+        ax_b.minorticks_on()
+
+        if row_idx == 0:
+            leg_handles = [
+                Patch(label=BAR_LABELS[d], **BAR_STYLES[d])
+                for d in ["BOL", "30K", "75K"]
+            ]
+            ax_b.legend(handles=leg_handles, loc="upper right",
+                        fontsize=FS_LEGEND, frameon=False,
+                        handlelength=1.2, labelspacing=0.3)
+
+    # Shared y-scale for all bar chart subplots
+    computed_ymax = np.ceil(max(bar_totals) / 100) * 100
+    ymax = bar_ymax if bar_ymax is not None else computed_ymax
+    for ax_b in bar_axes:
+        ax_b.set_ylim(0, ymax)
+
+    # Center "Current Density" x-title between col 0 and col 1 only
+    xlv_center = (axes[0, 0].get_position().x0 + axes[0, 1].get_position().x1) / 2
+    _add_shared_labels(fig, axes, xlab_center=xlv_center)
+
+    # Single centered y-label for the bar chart column — midpoint of gap between col 1 and col 2.
+    xb = (axes[0, 1].get_position().x1 + axes[0, 2].get_position().x0) / 2 - 0.02
+    y_center_bar = (axes[0, 2].get_position().y1 + axes[-1, 2].get_position().y0) / 2
+    fig.text(xb, y_center_bar, f"j @ {v_target} V (mAcm$^{{-2}}$)",
+             va="center", ha="center", rotation=90, fontsize=FS_LABEL)
 
     out_dir = os.path.join(BASE, "Durability I-V figure")
     os.makedirs(out_dir, exist_ok=True)
-    out = os.path.join(out_dir, f"LSV_combined_2x4_{group_name}.png")
+    out = os.path.join(out_dir, f"LSV_combined_2x4_{group_name}{suffix}.png")
     fig.savefig(out, dpi=300, bbox_inches="tight")
     plt.close(fig)
     print(f"Saved: {out}")
+    return computed_ymax
 
 
 # ---------------------------------------------------------------------------
@@ -280,7 +393,7 @@ def build_bol_figure(sample_list, group_name):
             ]
             ax_p.legend(handles=samp_handles, loc="lower right",
                         fontsize=FS_LEGEND, handlelength=2.0,
-                        borderpad=0.5, labelspacing=0.3)
+                        borderpad=0.5, labelspacing=0.3, framealpha=0)
 
     _add_shared_labels(fig, axes)
 
@@ -297,6 +410,11 @@ def build_bol_figure(sample_list, group_name):
 # ---------------------------------------------------------------------------
 build_combined(MAIN_ORDER,  MAIN_CLR,  "Main")
 build_combined(OTHER_ORDER, OTHER_CLR, "Other")
+ymax_07v = build_combined(MAIN_ORDER,  MAIN_CLR,  "Main",  v_target=0.70, suffix="_0p7V")
+build_combined(OTHER_ORDER, OTHER_CLR, "Other", v_target=0.70, suffix="_0p7V", bar_ymax=ymax_07v)
+ymax_04v = build_combined(MAIN_ORDER,  MAIN_CLR,  "Main",  v_target=0.40, suffix="_0p4V")
+build_combined(OTHER_ORDER, OTHER_CLR, "Other", v_target=0.40, suffix="_0p4V", bar_ymax=ymax_04v)
 build_bol_figure(BOL_MAIN_SAMPLES,  "Main")
 build_bol_figure(BOL_OTHER_SAMPLES, "Other")
+print("Done.")
 print("Done.")

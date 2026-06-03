@@ -32,7 +32,7 @@ DISPLAY_NAMES = {
 # ---------------------------------------------------------------------------
 
 def read_kinetics():
-    path = os.path.join(ALT_DIR, "Kinetic slope and intercept alt.xlsx")
+    path = os.path.join(ALT_DIR, "Kinetic slope and intercept alt NEW.xlsx")
     wb = openpyxl.load_workbook(path, data_only=True)
     ws = wb.active
     rows = list(ws.iter_rows(values_only=True))
@@ -182,7 +182,7 @@ def build_table(sample_list, group_name, sheet_name):
                 tbl[tbl_row, j].set_edgecolor("#555555")
 
     fig.text(0.5, 0.98,
-             f"O₂ 1.5 bar BP  —  {group_name} samples  (alt window −3.5 to −2.0)",
+             f"O₂ 1.5 bar BP  —  {group_name} samples  (alt window −3.0 to −2.0)",
              ha="center", va="top",
              fontsize=12, fontweight="bold", color=HDR_BG)
 
