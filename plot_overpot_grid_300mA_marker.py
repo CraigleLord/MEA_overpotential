@@ -18,8 +18,12 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 BASE     = os.path.dirname(os.path.abspath(__file__))
 ALT_DATA = os.path.join(BASE, "Durability I-V figure", "tafel plot alt",
                          "Overpotential DATA raw alt")
-OUT_DIR  = os.path.join(BASE, "Figure Plots (Claude AI)")
+OUT_DIR          = os.path.join(BASE, "Figure Plots (Claude AI)")
+OUT_DIR_260603   = os.path.join(BASE, "260603 New data set (reproducibility)")
+FINAL_PLOTS_DIR  = os.path.join(OUT_DIR_260603, "Final Plots")
 os.makedirs(OUT_DIR, exist_ok=True)
+os.makedirs(OUT_DIR_260603, exist_ok=True)
+os.makedirs(FINAL_PLOTS_DIR, exist_ok=True)
 
 MAIN_SAMPLES  = ["CN BM",     "KB BM",     "VC Polyol", "AB Polyol"]
 OTHER_SAMPLES = ["CN Polyol", "KB Polyol", "VC BM",     "AB BM"]
@@ -76,12 +80,36 @@ FILE_STEMS = {
     ("O2 BP", "AB BM"):      "AB BM 1.5bp O2",
 }
 
+O2BP_STEMS = {
+    "CN BM":     "CN BM 1.5bp O2",
+    "KB BM":     "KB BM 1.5bp O2",
+    "VC Polyol": "VC Polyol 1.5bp O2",
+    "AB Polyol": "AB Polyol 1.5bp O2",
+    "CN Polyol": "CN Polyol 1.5bp O2",
+    "KB Polyol": "KB Polyol 1.5bp O2",
+    "VC BM":     "VC BM 1.5bp O2",
+    "AB BM":     "AB BM 1.5bp O2",
+}
+
 C_KIN  = "#FFA07A"
 C_OHM  = "#90C090"
 C_PRO  = "#9090D8"
 C_MASS = "#F0E860"
 
-MARKER_I = 300.0   # mA/cm²
+MARKER_I = 500.0   # mA/cm²
+
+# EIS-derived proton resistance overrides (replaces per-point Excel column D)
+EIS_RPRO = {
+    "CN BM": 0.020229,
+}
+
+# 260603 reproducibility data overrides: (cond_folder, stem) -> folder containing
+# {dur_folder}/{stem}_edited.xlsx (dur_folder = "BOL"/"30K"/"75K")
+REPRO_DATA_260603 = os.path.join(BASE, "260603 New data set (reproducibility)",
+                                  "Overpotential DATA raw alt")
+DATA_OVERRIDES = {
+    ("Air BP", "KB BM 1.5bp air"): os.path.join(REPRO_DATA_260603, "Air BP", "KB BM"),
+}
 
 
 def calc_erev(T_K, p_h2_kPa, p_o2_kPa):
@@ -122,7 +150,25 @@ def read_excel(filepath):
     return I_mA, V, R_ohm, R_pro, float(T_K), float(P_H2), float(P_O2), float(intercept), float(slope)
 
 
+def read_kin_params(filepath):
+    wb = openpyxl.load_workbook(filepath, data_only=False)
+    ws = wb["Sheet1"]
+    intercept = ws["S4"].value
+    slope     = ws["S5"].value
+    wb.close()
+    if not isinstance(intercept, (int, float)) or not isinstance(slope, (int, float)):
+        raise ValueError(f"Non-numeric kin params: intercept={intercept!r}, slope={slope!r}")
+    return float(intercept), float(slope)
+
+
 def find_file(cond_folder, dur_folder, stem):
+    override = DATA_OVERRIDES.get((cond_folder, stem))
+    if override:
+        for dur_try in (dur_folder, dur_folder.lower()):
+            for sfx in ("_edited.xlsx", "_unchanged.xlsx"):
+                p = os.path.join(override, dur_try, stem + sfx)
+                if os.path.exists(p):
+                    return p
     for dur_try in (dur_folder, dur_folder.lower()):
         folder = os.path.join(ALT_DATA, cond_folder, dur_try, "Edited")
         for sfx in ("_edited.xlsx", "_unchanged.xlsx"):
@@ -157,38 +203,45 @@ def draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
     V_ohm_c  = np.maximum(V_ohm_, V)
     V_pro_c  = np.maximum(V_pro_, V)
 
-    ax.fill_between(I_mA, V_kin_c,  V_erev,   color=C_KIN,  alpha=0.85, label="Kinetic")
-    ax.fill_between(I_mA, V_ohm_c,  V_kin_c,  color=C_OHM,  alpha=0.85, label="Ohmic")
-    ax.fill_between(I_mA, V_pro_c,  V_ohm_c,  color=C_PRO,  alpha=0.85, label="Proton")
-    ax.fill_between(I_mA, V,        V_pro_c,  color=C_MASS, alpha=0.85, label="Mass Transport")
+    I_plot = I_mA / 1000  # convert to A cm⁻² for display
 
-    ax.plot(I_mA, V, color="black", linewidth=lw, zorder=5)
+    ax.fill_between(I_plot, V_kin_c,  V_erev,   color=C_KIN,  alpha=0.85, label="Kinetic")
+    ax.fill_between(I_plot, V_ohm_c,  V_kin_c,  color=C_OHM,  alpha=0.85, label="Ohmic")
+    ax.fill_between(I_plot, V_pro_c,  V_ohm_c,  color=C_PRO,  alpha=0.85, label="Proton")
+    ax.fill_between(I_plot, V,        V_pro_c,  color=C_MASS, alpha=0.85, label="Mass Transport")
 
-    i_m      = MARKER_I
-    v_kin_m  = float(np.interp(i_m, I_mA, V_kin_c))
-    v_meas_m = float(np.interp(i_m, I_mA, V))
-    ax.plot(i_m, v_kin_m,  marker="o", ms=6, color="red", linestyle="none", zorder=10)
-    ax.plot(i_m, v_meas_m, marker="o", ms=6, color="red", linestyle="none", zorder=10)
+    ax.plot(I_plot, V, color="black", linewidth=lw, zorder=5)
 
-    min_gap = 0.10
-    mid = (v_kin_m + v_meas_m) / 2
-    if abs(v_kin_m - v_meas_m) < min_gap:
-        v_kin_txt  = mid + min_gap / 2
-        v_meas_txt = mid - min_gap / 2
-    else:
-        v_kin_txt  = v_kin_m
-        v_meas_txt = v_meas_m
+    # Red markers at 0.2 and 1.0 A cm⁻² — label shows cell voltage (V) to 2 d.p.
+    for j_tgt in (0.2, 1.0):           # A cm⁻²
+        i_tgt = j_tgt * 1000           # mA cm⁻²
+        if I_mA.min() <= i_tgt <= I_mA.max():
+            v_tgt = float(np.interp(i_tgt, I_mA, V))
+            ax.plot(j_tgt, v_tgt, marker="o", ms=6, color="red",
+                    linestyle="none", zorder=10)
+            ax.text(j_tgt + 0.08, v_tgt, f"{v_tgt:.2f}",
+                    color="red", fontsize=fs, va="center", ha="left")
 
-    ax.text(i_m + 100, v_kin_txt,  f"{v_kin_m:.2f}",
-            color="red", fontsize=fs, va="center", ha="left")
-    ax.text(i_m + 100, v_meas_txt, f"{v_meas_m:.2f}",
-            color="red", fontsize=fs, va="center", ha="left")
+    # If the curve never reaches 1.0 A cm⁻², mark the end (highest current) point.
+    # Red dot labelled with cell voltage; current density shown separately in blue
+    # with an arrow pointing to the dot.
+    j_max = I_mA[-1] / 1000            # peak (= last) point, A cm⁻²
+    if j_max < 1.0:
+        ax.plot(j_max, V[-1], marker="o", ms=6, color="red",
+                linestyle="none", zorder=10)
+        ax.text(j_max + 0.08, V[-1], f"{V[-1]:.2f}",
+                color="red", fontsize=fs, va="center", ha="left")
+        ax.annotate(f"{j_max:.2f} Acm$^{{-2}}$", xy=(j_max, V[-1]),
+                    xytext=(j_max + 0.35, V[-1] + 0.30),
+                    color="#1565C0", fontsize=fs, ha="left", va="bottom",
+                    arrowprops=dict(arrowstyle="->", color="#1565C0", lw=1.2))
 
-    ax.set_xlim(0, 3500)
+    ax.set_xlim(0, 3.5)
     ax.set_ylim(0.2, ymax)
     ax.tick_params(direction="out", top=False, right=False,
                    labelsize=fs, width=1.2, length=5)
-    ax.xaxis.set_major_locator(plt.MultipleLocator(1000))
+    ax.xaxis.set_major_locator(plt.MultipleLocator(1))
+    ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f"{x:.1f}"))
     ax.yaxis.set_major_locator(plt.MultipleLocator(0.2))
     for spine in ax.spines.values():
         spine.set_linewidth(1.2)
@@ -205,38 +258,60 @@ def draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
                   handlelength=1.0, borderpad=0.3, labelspacing=0.15)
 
 
-def build_bol_grid(sample_list, group_name):
-    ncols     = len(BOL_CONDITIONS)
-    nrows     = len(sample_list)
+def build_bol_grid(sample_list, group_name, dur="BOL", show_titles=True, fname=None):
+    nrows     = len(BOL_CONDITIONS)   # conditions → rows
+    ncols     = len(sample_list)      # samples    → columns
     fs        = 18
-    label_x   = -0.55
     title_pad = fs * 0.67
     ymax      = 1.18
+
+    ROW_LABEL_X = 0.03
+    YLABEL_X    = 0.07
+    LEFT        = 0.13
 
     fig, axes = plt.subplots(
         nrows, ncols,
         figsize=(4.0 * ncols, 3.5 * nrows),
         dpi=300,
     )
-    fig.subplots_adjust(hspace=0.25, wspace=0.25)
-    fig.supxlabel(r"Current Density (mAcm$^{-2}$)", fontsize=fs, y=0.06)
-    fig.text(0.07, 0.5, "Cell Voltage (V)", ha="center", va="center",
-             rotation="vertical", fontsize=fs)
+    fig.subplots_adjust(left=LEFT, right=0.97, hspace=0.25, wspace=0.25)
+    if show_titles:
+        fig.supxlabel(r"Current Density (Acm$^{-2}$)", fontsize=fs, y=0.06)
+        fig.supylabel("Cell Voltage (V)", fontsize=fs, x=YLABEL_X)
 
-    for row_idx, samp in enumerate(sample_list):
-        for col_idx, (cond_folder, dur_folder, cond_label) in enumerate(BOL_CONDITIONS):
+    # Pre-compute O2 BP kinetics per sample (intrinsic) at the requested duration
+    kin_params = {}
+    for samp in sample_list:
+        o2bp_fp = find_file("O2 BP", dur, O2BP_STEMS[samp])
+        if o2bp_fp:
+            try:
+                kin_params[samp] = read_kin_params(o2bp_fp)
+            except Exception as e:
+                print(f"  WARN: O2 BP kin read failed for {samp}: {e}")
+                kin_params[samp] = (None, None)
+        else:
+            print(f"  WARN: O2 BP {dur} file not found for {samp}")
+            kin_params[samp] = (None, None)
+
+    for row_idx, (cond_folder, _dur_unused, cond_label) in enumerate(BOL_CONDITIONS):
+        for col_idx, samp in enumerate(sample_list):
             ax         = axes[row_idx, col_idx]
             is_topleft = (row_idx == 0 and col_idx == 0)
             stem = FILE_STEMS.get((cond_folder, samp))
-            fp   = find_file(cond_folder, dur_folder, stem) if stem else None
+            fp   = find_file(cond_folder, dur, stem) if stem else None
 
             if fp is None:
                 ax.text(0.5, 0.5, "no data", transform=ax.transAxes,
                         ha="center", va="center", fontsize=fs)
-                ax.set_xlim(0, 3500); ax.set_ylim(0.2, ymax)
+                ax.set_xlim(0, 3.5); ax.set_ylim(0.2, ymax)
             else:
                 try:
                     I_mA, V, R_ohm, R_pro, T_K, P_H2, P_O2, intercept, slope = read_excel(fp)
+                    kin_intercept, kin_slope = kin_params[samp]
+                    if kin_intercept is not None:
+                        intercept, slope = kin_intercept, kin_slope
+                    if samp in EIS_RPRO:
+                        R_pro = np.full(len(R_pro), EIS_RPRO[samp])
                     erev = calc_erev(T_K, P_H2, P_O2)
                     draw_panel(ax, I_mA, V, R_ohm, R_pro, erev, intercept, slope,
                                fs=fs, lw=1.6,
@@ -247,20 +322,31 @@ def build_bol_grid(sample_list, group_name):
                     ax.text(0.5, 0.5, "error", transform=ax.transAxes,
                             ha="center", va="center", fontsize=fs)
 
-            if row_idx == 0:
-                ax.set_title(cond_label, fontsize=fs, fontweight="bold", pad=title_pad)
-            if col_idx == 0:
-                ax.text(label_x, 0.5, LABELS[samp],
-                        transform=ax.transAxes, fontsize=fs, fontweight="bold",
-                        ha="center", va="center", rotation=90, clip_on=False)
+            if show_titles:
+                # Row labels = condition names (left column only)
+                if col_idx == 0:
+                    pos   = axes[row_idx, 0].get_position()
+                    y_fig = (pos.y0 + pos.y1) / 2
+                    fig.text(ROW_LABEL_X, y_fig, cond_label,
+                             fontsize=fs, fontweight="bold",
+                             ha="center", va="center", rotation=90, clip_on=False)
 
-    out = os.path.join(OUT_DIR, f"Overpot_grid_{group_name}_300mA.png")
-    fig.savefig(out, dpi=300, bbox_inches="tight")
+    if fname is None:
+        fname = f"Overpot_grid_{group_name}_300mA.png"
+    for d in (OUT_DIR, OUT_DIR_260603, FINAL_PLOTS_DIR):
+        out = os.path.join(d, fname)
+        fig.savefig(out, dpi=300, bbox_inches="tight")
+        print(f"Saved: {out}")
     plt.close(fig)
-    print(f"Saved: {out}")
 
 
-build_bol_grid(MAIN_SAMPLES,  "Main")
-build_bol_grid(OTHER_SAMPLES, "Other")
+build_bol_grid(MAIN_SAMPLES,  "Main",  show_titles=False)
+build_bol_grid(OTHER_SAMPLES, "Other", show_titles=False)
+
+# 75K-only variant: no titles, no axis titles
+build_bol_grid(MAIN_SAMPLES,  "Main",  dur="75K", show_titles=False,
+               fname="Overpot_grid_Main_75K.png")
+build_bol_grid(OTHER_SAMPLES, "Other", dur="75K", show_titles=False,
+               fname="Overpot_grid_Other_75K.png")
 
 print("Done.")

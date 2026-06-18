@@ -91,8 +91,8 @@ ROW_A   = "#D9E4F0"
 ROW_B   = "#FFFFFF"
 SAMP_FG = "#1E3A5F"
 
-COL_LABELS = ["Sample", "Dur.", "Tafel Slope", "Tafel Intercept", "R_HFR", "R_pro"]
-COL_W      = [0.14, 0.07, 0.19, 0.19, 0.16, 0.16]
+COL_LABELS = ["Sample", "Dur.", "Tafel Slope", "Tafel Intercept"]
+COL_W      = [0.14, 0.07, 0.22, 0.22]
 
 
 def fmt(v, decimals=3):
@@ -101,25 +101,21 @@ def fmt(v, decimals=3):
 
 def build_table(sample_list, group_name, sheet_name):
     kinetics = read_kinetics()
-    hfr_pro  = read_hfr_proton(sheet_name, sample_list)
 
     rows_data = []
     for samp in sample_list:
         for i, dur in enumerate(DURS):
             b, a = kinetics.get((samp, dur), (np.nan, np.nan))
-            ro, rp = hfr_pro.get((samp, dur), (np.nan, np.nan))
             samp_label = DISPLAY_NAMES[samp] if i == 0 else ""
-            rows_data.append((samp_label, dur, b, a, ro, rp))
+            rows_data.append((samp_label, dur, b, a))
 
     cell_text = []
-    for samp_label, dur, b, a, ro, rp in rows_data:
+    for samp_label, dur, b, a in rows_data:
         cell_text.append([
             samp_label,
             dur,
             fmt(b, 4),
             fmt(a, 3),
-            fmt(ro, 4),
-            fmt(rp, 4),
         ])
 
     n_data_rows = len(cell_text)
@@ -128,7 +124,7 @@ def build_table(sample_list, group_name, sheet_name):
     data_row_h_in = 0.34
     hdr_row_h_in  = 0.44
     fig_h = n_data_rows * data_row_h_in + hdr_row_h_in + 0.70
-    fig_w = 9.5
+    fig_w = 7.0
 
     fig, ax = plt.subplots(figsize=(fig_w, fig_h))
     ax.axis("off")
@@ -186,7 +182,8 @@ def build_table(sample_list, group_name, sheet_name):
              ha="center", va="top",
              fontsize=12, fontweight="bold", color=HDR_BG)
 
-    out = os.path.join(ALT_DIR, f"Table_O2_15bp_{group_name}_alt.png")
+    out = os.path.join(BASE, "260603 New data set (reproducibility)", "Final Plots",
+                       f"Table_O2_15bp_{group_name}_alt.png")
     fig.savefig(out, dpi=300, bbox_inches="tight", facecolor="white")
     plt.close(fig)
     print(f"Saved: {out}")

@@ -88,14 +88,15 @@ def make_figure(group_name, samples):
         for dur in DURS:
             ci_bp, hfr_bp = bp[samp][dur]
             ci_no, hfr_no = no_bp[samp][dur]
-            ax.plot(ci_bp, hfr_bp, color=BP_COLORS[dur],  lw=1.5)
-            ax.plot(ci_no, hfr_no, color=NBP_COLORS[dur], lw=1.5)
+            ax.plot(ci_bp / 1000, hfr_bp, color=BP_COLORS[dur],  lw=1.5)
+            ax.plot(ci_no / 1000, hfr_no, color=NBP_COLORS[dur], lw=1.5)
 
         ax.set_title(LABELS[samp], fontsize=32, fontweight="bold", pad=14)
-        ax.set_xlim(0, 2300)
+        ax.set_xlim(0, 2.3)
         ax.set_ylim(0, 0.030)
-        ax.xaxis.set_major_locator(ticker.MultipleLocator(1000))
-        ax.xaxis.set_minor_locator(ticker.MultipleLocator(500))
+        ax.xaxis.set_major_locator(ticker.MultipleLocator(1.0))
+        ax.xaxis.set_minor_locator(ticker.MultipleLocator(0.5))
+        ax.xaxis.set_major_formatter(ticker.FormatStrFormatter("%.1f"))
         ax.yaxis.set_major_locator(ticker.MultipleLocator(0.01))
         ax.yaxis.set_minor_locator(ticker.MultipleLocator(0.005))
         ax.tick_params(which="major", labelsize=26, width=1.5, length=6)
@@ -145,7 +146,7 @@ def make_figure(group_name, samples):
 
     plt.tight_layout(h_pad=4.0, rect=[0, 0.05, 1, 1])
 
-    for row, label in enumerate(["Current Density (mA cm⁻²)", "Z' (Ω)"]):
+    for row, label in enumerate(["Current Density (A cm⁻²)", "Z' (Ω)"]):
         xc = (axes[row, 0].get_position().x0 + axes[row, -1].get_position().x1) / 2
         yb = axes[row, 0].get_position().y0 - 0.045
         fig.text(xc, yb, label, ha="center", va="top", fontsize=30)

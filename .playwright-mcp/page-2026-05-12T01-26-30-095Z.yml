@@ -1,0 +1,1712 @@
+- generic [ref=e1]:
+  - dialog "Cookie Consent Banner" [ref=e2]:
+    - button "Close this dialog" [active] [ref=e3] [cursor=pointer]:
+      - img "Close this dialog" [ref=e4]
+    - generic [ref=e5]:
+      - generic [ref=e6]: This website utilises technologies such as cookies to enable essential site functionality, as well as for analytics, personalisation, and targeted advertising. You may change your settings at any time or accept the default settings. You may close this banner to continue with only essential cookies.
+      - link "Privacy Policy" [ref=e7] [cursor=pointer]:
+        - /url: https://www.wiley.com/privacy
+    - generic [ref=e8]:
+      - button "Manage Preferences" [ref=e9] [cursor=pointer]
+      - button "Accept All" [ref=e10] [cursor=pointer]
+      - button "Reject Non-Essential" [ref=e11] [cursor=pointer]
+  - navigation:
+    - list:
+      - listitem:
+        - button "Skip to Article Content" [ref=e12]
+      - listitem:
+        - button "Skip to Article Information" [ref=e13]
+  - generic [ref=e15]:
+    - banner [ref=e17]:
+      - generic [ref=e21]:
+        - generic [ref=e26]: Korea Advanced Institute of Science and Technology (KAIST)
+        - link "The Advanced Portfolio" [ref=e29] [cursor=pointer]:
+          - /url: /
+          - img "The Advanced Portfolio" [ref=e30]
+        - generic [ref=e31]:
+          - generic [ref=e33]:
+            - button "Search" [ref=e34]:
+              - generic [ref=e35]: 
+            - text:   
+          - generic [ref=e38]:
+            - button "Log in or Register" [ref=e40]:
+              - generic [ref=e41]: 
+            - text:  
+          - link "menu drawer" [ref=e42] [cursor=pointer]:
+            - /url: "#main1"
+            - generic [ref=e43]: 
+    - main [ref=e45]:
+      - generic [ref=e47]:
+        - generic:
+          - heading "Advanced Hub Main Navigation Menu" [level=2] [ref=e48]
+          - generic:
+            - navigation:
+              - menubar [ref=e49]:
+                - listitem "Home" [ref=e50]:
+                  - menuitem "Home" [ref=e51] [cursor=pointer]
+                - listitem "Journals" [ref=e52]:
+                  - menuitem "Journals " [ref=e53] [cursor=pointer]: Journals  
+                - listitem "Publish with Advanced" [ref=e54]:
+                  - menuitem "Publish with Advanced " [ref=e55] [cursor=pointer]: Publish with Advanced  
+                - listitem "Special Collections" [ref=e56]:
+                  - menuitem "Special Collections " [ref=e57] [cursor=pointer]: Special Collections  
+                - listitem "Advanced Community" [ref=e58]:
+                  - menuitem "Advanced Community " [ref=e59] [cursor=pointer]: Advanced Community  
+              - generic:
+                - list:     
+        - complementary [ref=e63]:
+          - generic [ref=e64]: Advertisement
+        - generic [ref=e69]:
+          - article [ref=e70]:
+            - generic [ref=e71]:
+              - generic [ref=e72]:
+                - generic [ref=e74]:
+                  - generic [ref=e75]:
+                    - link "Advanced Functional Materials/" [ref=e77] [cursor=pointer]:
+                      - /url: /journal/16163028
+                    - link "Volume 34, Issue 48" [ref=e78] [cursor=pointer]:
+                      - /url: /toc/16163028/2024/34/48
+                    - generic [ref=e79]: / 2408383
+                  - generic [ref=e80]:
+                    - generic [ref=e81]: Research Article
+                    - generic [ref=e83]:
+                      - generic [ref=e84]: 
+                      - generic [ref=e85]: Full Access
+                  - heading "Thermostable Tellurium Anchoring Enabling Robust Thermal and Electrochemical Stability for Pt3Co Intermetallic Fuel Cell Catalysts" [level=1] [ref=e86]:
+                    - text: Thermostable Tellurium Anchoring Enabling Robust Thermal and Electrochemical Stability for Pt
+                    - subscript [ref=e87]: "3"
+                    - text: Co Intermetallic Fuel Cell Catalysts
+                  - text:              
+                  - generic [ref=e91]:
+                    - generic [ref=e92]:
+                      - button "Yuanxin Chen" [ref=e93] [cursor=pointer]:
+                        - generic [ref=e94]: Yuanxin Chen
+                        - text: 
+                      - generic [ref=e95]: ","
+                    - generic [ref=e96]:
+                      - button "Zihan Meng" [ref=e97] [cursor=pointer]:
+                        - generic [ref=e98]:
+                          - text: Zihan Meng
+                          - generic [ref=e99]: 
+                        - text: 
+                      - generic [ref=e100]: ","
+                      - text: 
+                    - generic [ref=e101]:
+                      - button "Fei Liu" [ref=e102] [cursor=pointer]:
+                        - generic [ref=e103]: Fei Liu
+                        - text: 
+                      - generic [ref=e104]: ","
+                    - generic [ref=e105]:
+                      - button "Aojie Zhang" [ref=e106] [cursor=pointer]:
+                        - generic [ref=e107]: Aojie Zhang
+                        - text: 
+                      - generic [ref=e108]: ","
+                    - generic [ref=e109]:
+                      - button "Xiaocan Wang" [ref=e110] [cursor=pointer]:
+                        - generic [ref=e111]: Xiaocan Wang
+                        - text: 
+                      - generic [ref=e112]: ","
+                    - generic [ref=e113]:
+                      - button "Yifei Xiong" [ref=e114] [cursor=pointer]:
+                        - generic [ref=e115]: Yifei Xiong
+                        - text: 
+                      - generic [ref=e116]: ","
+                    - generic [ref=e117]:
+                      - button "Haibo Tang" [ref=e118] [cursor=pointer]:
+                        - generic [ref=e119]: Haibo Tang
+                        - text: 
+                      - generic [ref=e120]: ","
+                    - generic [ref=e121]:
+                      - button "Tian Tian" [ref=e122] [cursor=pointer]:
+                        - generic [ref=e123]: Tian Tian
+                        - text: 
+                      - generic [ref=e124]: ","
+                    - generic [ref=e125]:
+                      - button "Haolin Tang" [ref=e126] [cursor=pointer]:
+                        - generic [ref=e127]:
+                          - text: Haolin Tang
+                          - generic [ref=e128]: 
+                        - text: 
+                      - text:  
+                  - generic [ref=e129]:
+                    - generic [ref=e130]: "First published: 10 August 2024"
+                    - link "https://doi.org/10.1002/adfm.202408383 Digital Object Identifier (DOI)" [ref=e132] [cursor=pointer]:
+                      - /url: https://doi.org/10.1002/adfm.202408383
+                      - text: https://doi.org/10.1002/adfm.202408383
+                      - generic [ref=e133]: Digital Object Identifier (DOI)
+                    - button "view metrics" [ref=e135]:
+                      - generic [ref=e136]: 
+                      - text: view metrics
+                  - link "Find it @ KAIST, opens in a new tab" [ref=e138] [cursor=pointer]:
+                    - /url: /servlet/linkout?suffix=s0&dbid=16384&doi=10.1002/adfm.202408383&type=tocOpenUrl&url=http%3A%2F%2Fsfx-82kst-kaist.hosted.exlibrisgroup.com%2Fkaist%3F
+                    - text: Find it @ KAIST
+                    - generic [ref=e139]: 
+                - link "PDF" [ref=e142] [cursor=pointer]:
+                  - /url: /doi/epdf/10.1002/adfm.202408383
+                  - generic [ref=e143]: PDF
+                - navigation "Article navigation and tools" [ref=e145]:
+                  - generic [ref=e146]:
+                    - generic [ref=e147]:
+                      - button " About" [ref=e149] [cursor=pointer]:
+                        - generic [ref=e150]: 
+                        - text: About
+                      - button " Sections" [ref=e152] [cursor=pointer]:
+                        - generic [ref=e153]: 
+                        - text: Sections
+                    - generic [ref=e154]:
+                      - button "Citation" [ref=e156] [cursor=pointer]:
+                        - generic [ref=e157]: 
+                      - button "Tools" [ref=e159] [cursor=pointer]:
+                        - generic [ref=e160]: 
+                      - generic [ref=e161]:
+                        - button "Share" [ref=e162] [cursor=pointer]:
+                          - generic [ref=e163]: 
+                        - text: 
+                - article [ref=e165]:
+                  - generic [ref=e167]:
+                    - heading "Abstract" [level=2] [ref=e168]
+                    - paragraph [ref=e170]:
+                      - text: Highly active Pt-based intermetallic nanoparticles (i-NPs) loaded on stable supports have garnered considerable interest as promising oxygen reduction reaction (ORR) catalysts for proton-exchange-membrane fuel cells (PEMFCs). Herein, thermostable tellurium (Te) is vapor-deposited onto commercial conductive carbon to anchor high-temperature-synthesized Pt
+                      - subscript [ref=e171]: "3"
+                      - text: Co i-NPs. Advanced characterization and density functional theory (DFT) calculations demonstrate that the binding energy of Pt 4f and Co 2p shift positively by 0.12 and 0.95 eV after the introduction of Te in carbon support, promoting the formation of Pt─Te bonds, which enhances the metal–support interactions (MSIs) in Pt
+                      - subscript [ref=e172]: "3"
+                      - text: Co/Te-C (with a more negative binding energy of −10.28 eV). The average size of well-dispersed Pt
+                      - subscript [ref=e173]: "3"
+                      - text: Co i-NPs (≈3.9 nm) on Te─C is considerably smaller than that of Pt
+                      - subscript [ref=e174]: "3"
+                      - text: Co i-NPs (≈9.1 nm) on commercial carbon. The specific activity of Pt
+                      - subscript [ref=e175]: "3"
+                      - text: Co/Te-C decreases by only 1.5% after 100,000 ultra-long voltage-accelerated cycles, while the morphology remains almost unchanged. The membrane electrode assembly using Pt
+                      - subscript [ref=e176]: "3"
+                      - text: Co/Te-C as a cathode demonstrates impressive activity (power density of 2.32 W cm
+                      - superscript [ref=e177]: −2
+                      - text: "@4 A cm"
+                      - superscript [ref=e178]: −2
+                      - text: and mass activity of 0.50 A mg
+                      - subscript [ref=e179]: Pt
+                      - superscript [ref=e180]: −1
+                      - text: "@0.9 V) and robust durability (mass activity@0.9 V loss of 26% after 30,000 cycles with intact L1"
+                      - subscript [ref=e181]: "2"
+                      - text: ordered structure) in H
+                      - subscript [ref=e182]: "2"
+                      - text: –O
+                      - subscript [ref=e183]: "2"
+                      - text: operation, significantly exceeding the DOE 2025 requirements.
+                  - generic [ref=e184]:
+                    - generic [ref=e185]:
+                      - heading "1 Introduction" [level=2] [ref=e186]
+                      - paragraph [ref=e187]:
+                        - text: Proton-exchange-membrane fuel cells (PEMFCs) are considered a promising energy conversion technology that converts hydrogen into electricity with high efficiency and energy density producing only unpolluted water.
+                        - superscript [ref=e188]: "["
+                        - superscript [ref=e190]:
+                          - link "Reference 1 - ACS Catal." [ref=e191] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0001"
+                            - text: "1"
+                          - text: "-"
+                          - link "Reference 4 - Appl Catal B." [ref=e192] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0004"
+                            - text: "4"
+                        - superscript [ref=e193]: "]"
+                        - text: The performance and lifetime of PEMFCs are primarily determined based on the activity and durability of cathode catalysts owing to the sluggish kinetics of the oxygen reduction reaction (ORR).
+                        - superscript [ref=e194]: "["
+                        - superscript [ref=e196]:
+                          - link "Reference 5 - Adv. Mater." [ref=e197] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0005"
+                            - text: "5"
+                        - superscript [ref=e198]: "]"
+                        - text: Historically, nanosized Pt particles loaded on conductive carbon supports have been demonstrated to boost ORR kinetics.
+                        - superscript [ref=e199]: "["
+                        - superscript [ref=e201]:
+                          - link "Reference 6 - Angew. Chem., Int. Ed." [ref=e202] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0006"
+                            - text: "6"
+                        - superscript [ref=e203]: "]"
+                        - text: However, the high cost and low durability of Pt-based cathode catalysts restrict the large-scale commercialization of PEMFCs.
+                        - superscript [ref=e204]: "["
+                        - superscript [ref=e206]:
+                          - link "Reference 7 - Adv. Mater." [ref=e207] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0007"
+                            - text: "7"
+                        - superscript [ref=e208]: "]"
+                        - text: Consequently, considerable efforts have been devoted to developing highly active Pt-based nanoparticles stably loaded on carbon supports to promote mass activity and prevent metal degradation, although this remains highly challenging.
+                      - paragraph [ref=e209]:
+                        - text: Alloying Pt with 3d transition metals, such as Co, Mn, or Ni, can regulate the electronic structure of Pt to enhance its inherent ORR activity, thereby reducing Pt consumption. Moreover, ordered Pt-based intermetallic nanoparticles (i-NPs) exhibit a periodic arrangement of atoms within the crystal, resulting in ligand and strain effects as well as thermodynamic stability for excellent ORR performance.
+                        - superscript [ref=e210]: "["
+                        - superscript [ref=e212]:
+                          - link "Reference 8 - Angew. Chem., Int. Ed." [ref=e213] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0008"
+                            - text: "8"
+                        - superscript [ref=e214]: "]"
+                        - text: However, it is worth mentioning that synthesizing ordered Pt-based i-NPs typically requires high temperatures to facilitate atomic diffusion and ordering. Furthermore, high-temperature annealing accelerates metal sintering producing larger i-NPs with increased size distributions,
+                        - superscript [ref=e215]: "["
+                        - superscript [ref=e217]:
+                          - link "Reference 9 - Adv. Mater." [ref=e218] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0009"
+                            - text: "9"
+                          - text: ","
+                          - link "Reference 10 - Nat. Mater." [ref=e219] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0010"
+                            - text: "10"
+                        - superscript [ref=e220]: "]"
+                        - text: resulting in reduced electrochemical surface areas (ECSAs) and mass activity.
+                        - superscript [ref=e221]: "["
+                        - superscript [ref=e223]:
+                          - link "Reference 11 - J. Electroanal. Chem." [ref=e224] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0011"
+                            - text: "11"
+                          - text: "-"
+                          - link "Reference 13 - Nano Lett." [ref=e225] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0013"
+                            - text: "13"
+                        - superscript [ref=e226]: "]"
+                        - text: Therefore, an effective strategy to promote thermal stability for suppressed sintering is essential for forming small-sized and highly-ordered intermetallic structures.
+                      - paragraph [ref=e227]:
+                        - text: Catalyst supports play a crucial role in uniformly dispersing metal particles, and interacting with them, thereby influencing catalytic activity and durability.
+                        - superscript [ref=e228]: "["
+                        - superscript [ref=e230]:
+                          - link "Reference 14 - Nat. Catal." [ref=e231] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0014"
+                            - text: "14"
+                          - text: "-"
+                          - link "Reference 16 - Science" [ref=e232] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0016"
+                            - text: "16"
+                        - superscript [ref=e233]: "]"
+                        - text: Carbon materials are a promising option for supporting Pt-based NPs owing to their good conductivity and high specific surface area.
+                        - superscript [ref=e234]: "["
+                        - superscript [ref=e236]:
+                          - link "Reference 17 - Chem. Rev." [ref=e237] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0017"
+                            - text: "17"
+                        - superscript [ref=e238]: "]"
+                        - text: However, the weak interactions between Pt-based NPs and pure carbon supports often leads to metal sintering during thermal annealing as well as dissolution, migration, and detachment under harsh catalytic conditions.
+                        - superscript [ref=e239]: "["
+                        - superscript [ref=e241]:
+                          - link "Reference 18 - Angew. Chem., Int. Ed." [ref=e242] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0018"
+                            - text: "18"
+                        - superscript [ref=e243]: "]"
+                        - text: Modifying carbon support can improve metal–support interactions (MSIs) and regulate the electronic structure of Pt-based NPs, making modified carbon a viable option for constructing thermal and electrochemical stability to enhance the resistance of metal sintering and degradation for superior activity and durability.
+                        - superscript [ref=e244]: "["
+                        - superscript [ref=e246]:
+                          - link "Reference 19 - Angew. Chem., Int. Ed." [ref=e247] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0019"
+                            - text: "19"
+                        - superscript [ref=e248]: "]"
+                        - text: For instance, Liang et al.
+                        - superscript [ref=e249]: "["
+                        - superscript [ref=e251]:
+                          - link "Reference 20 - Science" [ref=e252] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0020"
+                            - text: "20"
+                        - superscript [ref=e253]: "]"
+                        - text: employed Si NPs as templates to create porous S-doped carbon (S-C), which exhibited excellent resistance to metal sintering at high-temperature annealing of Pt-based i-NPs, with an average size of less than 5 nm. Sun et al.
+                        - superscript [ref=e254]: "["
+                        - superscript [ref=e256]:
+                          - link "Reference 21 - Energy Environ. Sci." [ref=e257] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0021"
+                            - text: "21"
+                        - superscript [ref=e258]: "]"
+                        - text: introduced P-O functional groups into the Ketjen black to anchor PtCo alloy NPs. The P-O functional group effectively inhibits the growth of PtCo NPs and enhances electrochemical stability owing to the strong interaction between Pt in NPs and O in the carbon support. Group VIA elements (such as S, Se, and Te) tend to get electrons, and when doped into carbon supports to support metal species, the electronic transfers between metal species and carbon supports can be regulated, thereby enhancing the metal-support interactions. Compared with S and Se, semimetal Te exhibits stronger metallicity and higher electrical conductivity (≈1000 S m
+                        - superscript [ref=e259]: −1
+                        - text: ) owing to its lowest electronegativity,
+                        - superscript [ref=e260]: "["
+                        - superscript [ref=e262]:
+                          - link "Reference 22 - Nano Res. Energy" [ref=e263] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0022"
+                            - text: "22"
+                        - superscript [ref=e264]: "]"
+                        - text: which is beneficial to improve the conductivity of the catalyst for efficient electrocatalysis. Additionally, the superior acid resistance of Te is essential for ensuring the chemical stability of the catalyst under operational conditions.
+                        - superscript [ref=e265]: "["
+                        - superscript [ref=e267]:
+                          - link "Reference 23 - Appl. Catal., A" [ref=e268] [cursor=pointer]:
+                            - /url: "#adfm202408383-bib-0023"
+                            - text: "23"
+                        - superscript [ref=e269]: "]"
+                      - paragraph [ref=e270]:
+                        - text: Herein, we developed Te-C supports using a facile vapor deposition method and proposed a thermostable Te anchoring strategy for Pt
+                        - subscript [ref=e271]: "3"
+                        - text: Co i-NPs catalysts with robust thermal and electrochemical stability. Characterization of electronic and coordination structures as well as density functional theory (DFT) calculations revealed that the binding energy of Pt 4f and Co 2p shifted positively by 0.12 and 0.95 eV in Pt
+                        - subscript [ref=e272]: "3"
+                        - text: Co/Te-C with a more negative binding energy of −10.28 eV for enhanced MSIs, resulting in the formation of Pt─Te bonds, which contributed to resist sintering during high-temperature annealing and degradation under operational conditions of the Pt
+                        - subscript [ref=e273]: "3"
+                        - text: Co i-NPs. DFT calculations also confirmed that the adjustment of the electronic structure of Pt optimized the desorption of
+                        - superscript [ref=e274]: ∗
+                        - text: OH, thus promoting the intrinsic activity of Pt
+                        - subscript [ref=e275]: "3"
+                        - text: Co/Te-C. Electronic structure-modified Pt
+                        - subscript [ref=e276]: "3"
+                        - text: Co i-NPs on Te─C supports with an average size of 3.9 nm resulted in high activity in H
+                        - subscript [ref=e277]: "2"
+                        - text: –O
+                        - subscript [ref=e278]: "2"
+                        - text: fuel cell (mass activity of 0.50 A mg
+                        - subscript [ref=e279]: Pt
+                        - superscript [ref=e280]: −1
+                        - text: and power density of 2.32 W cm
+                        - superscript [ref=e281]: −2
+                        - text: "@4 A cm"
+                        - superscript [ref=e282]: −2
+                        - text: ). Significantly, the high Te retention after annealing (2.3 wt% in Pt
+                        - subscript [ref=e283]: "3"
+                        - text: Co/Te─C) with enhanced MSIs led to robust durability after 100000 voltage cycles (specific activity retention of 1.5% with almost unchanged morphology) in rotating disk electrode (RDE) tests and after 30000 voltage cycles (mass activity retention of 74% with intact L1
+                        - subscript [ref=e284]: "2"
+                        - text: ordered structure) in membrane electrode assembly (MEA) tests, considerably exceeding the DOE 2025 targets.
+                    - generic [ref=e285]:
+                      - heading "2 Results and Discussion" [level=2] [ref=e286]
+                      - generic [ref=e287]:
+                        - heading "2.1 Carbon Support Modification and Pt3Co i-NPs Synthesis" [level=3] [ref=e288]:
+                          - text: 2.1 Carbon Support Modification and Pt
+                          - subscript [ref=e289]: "3"
+                          - text: Co i-NPs Synthesis
+                        - paragraph [ref=e290]:
+                          - text: Figure
+                          - link "1a" [ref=e291] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0001"
+                          - text: illustrates the modification of the carbon support and the synthesis of ordered Pt
+                          - subscript [ref=e292]: "3"
+                          - text: Co i-NPs. Initially, three types of carbon supports were obtained by doping heteroatoms of Te, Se, and S into Ketjen black (EC-300J) via the chemical vapor deposition (CVD) method, named Te-doped carbon (Te─C), Se-doped carbon (Se─C), and S-doped carbon (S─C), respectively. Compared with wet impregnation and physical grind mixing, the CVD method is simple to modify near the surface with fewer operation processes for lower energy consumption, and does not use any toxic organic solvents, which is environmentally friendly. The EC-300J in the control sample was subjected to the same heat treatment without any doping. Subsequently, the Pt
+                          - subscript [ref=e293]: "3"
+                          - text: Co i-NPs were successfully synthesized on these modified carbon supports via wet impregnation and thermal annealing in a reductive atmosphere. Annealing at high temperatures was used to facilitate the alloying of Pt and Co with disordered intermetallic structures, while prolonged holding at low temperatures promoted the disorder-order transition for synthesizing highly ordered Pt
+                          - subscript [ref=e294]: "3"
+                          - text: Co intermetallic nanoparticles (see Supporting Information).
+                        - figure "Figure 1 Open in figure viewer PowerPoint a) Schematic illustration of the carbon support modification and the Pt3Co i-NPs synthesis. b) XRD patterns of Pt3Co/Te-C, Pt3Co/Se-C, Pt3Co/S-C, and Pt3Co/C. c–f) HAADF-STEM images of Pt3Co/Te-C, Pt3Co/Se-C, Pt3Co/S-C, and Pt3Co/C. The insets show the statistics of the particle size distributions of corresponding i-NPs. g) Atomic-resolution HAADF-STEM image of Pt3Co/Te-C. h) FFT patterns of highlighted area from g). i) Line profile of Pt3Co/Te-C from part g). j) EDS mapping of Pt3Co/Te-C." [ref=e296]:
+                          - link "Details are in the caption following the image" [ref=e297] [cursor=pointer]:
+                            - /url: /cms/asset/e4004105-135b-4a46-aa31-2da8c4d8877e/adfm202408383-fig-0001-m.jpg
+                            - img "Details are in the caption following the image" [ref=e299]
+                          - generic [ref=e300]:
+                            - generic [ref=e301]:
+                              - strong [ref=e302]: Figure 1
+                              - generic [ref=e303]:
+                                - link "Open in figure viewer" [ref=e304] [cursor=pointer]:
+                                  - /url: "#"
+                                - link "PowerPoint" [ref=e305] [cursor=pointer]:
+                                  - /url: /action/downloadFigures?id=adfm202408383-fig-0001&partId=&doi=10.1002%2Fadfm.202408383
+                                  - generic [ref=e306]: 
+                                  - text: PowerPoint
+                            - generic [ref=e307]:
+                              - text: a) Schematic illustration of the carbon support modification and the Pt
+                              - subscript [ref=e308]: "3"
+                              - text: Co i-NPs synthesis. b) XRD patterns of Pt
+                              - subscript [ref=e309]: "3"
+                              - text: Co/Te-C, Pt
+                              - subscript [ref=e310]: "3"
+                              - text: Co/Se-C, Pt
+                              - subscript [ref=e311]: "3"
+                              - text: Co/S-C, and Pt
+                              - subscript [ref=e312]: "3"
+                              - text: Co/C. c–f) HAADF-STEM images of Pt
+                              - subscript [ref=e313]: "3"
+                              - text: Co/Te-C, Pt
+                              - subscript [ref=e314]: "3"
+                              - text: Co/Se-C, Pt
+                              - subscript [ref=e315]: "3"
+                              - text: Co/S-C, and Pt
+                              - subscript [ref=e316]: "3"
+                              - text: Co/C. The insets show the statistics of the particle size distributions of corresponding i-NPs. g) Atomic-resolution HAADF-STEM image of Pt
+                              - subscript [ref=e317]: "3"
+                              - text: Co/Te-C. h) FFT patterns of highlighted area from g). i) Line profile of Pt
+                              - subscript [ref=e318]: "3"
+                              - text: Co/Te-C from part g). j) EDS mapping of Pt
+                              - subscript [ref=e319]: "3"
+                              - text: Co/Te-C.
+                      - generic [ref=e320]:
+                        - heading "2.2 Carbon Support Characterization" [level=3] [ref=e321]
+                        - paragraph [ref=e322]:
+                          - text: Four types of modified carbon supports were characterized via X-ray diffraction (XRD), scanning electron microscopy (SEM), transmission electron microscopy (TEM), energy-dispersive Xray spectroscopy (EDS) elemental mapping, X-ray photoelectron spectroscopy (XPS), N
+                          - subscript [ref=e323]: "2"
+                          - text: adsorption-desorption analysis and Raman spectra. For consistency, the amount of doping source was regulated to ensure that the mass of heteroatoms was equal across the three doped carbon supports, as determined via inductively coupled plasma-optical emission spectroscopy (ICP-OES) (Table
+                          - link "S1" [ref=e324] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information). XRD patterns (Figure"
+                          - link "S1" [ref=e325] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information) revealed no diffraction peaks of heteroatoms in Te─C, Se─C, and S─C, indicating that the heteroatoms may be uniformly dispersed in the form of single atoms in the corresponding carbon support. SEM images (Figure"
+                          - link "S2" [ref=e326] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information) displayed the accumulation of carbon spheres with diameters ranging from 30 to 50 nm. TEM images and corresponding EDS mapping (Figures"
+                          - link "S3–S5" [ref=e327] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information) showed that the heteroatoms (Te, Se, and S) were uniformly distributed on the corresponding carbon supports and did not form obvious particles. Moreover, it was clearly found that in the case of the same mass fraction, sulfur had the largest amount because of its smallest relative atomic mass among the three dopants. In the XPS spectra of the doped carbon supports, the peaks located at 574.5 and 584.8 eV in the Te 3d spectra, 56.0 and 56.8 eV in the Se 3d spectra, and 164.2 and 165.4 eV in the S 2p spectra can be assigned to Te─C bonds, Se─C bonds, and S─C bonds, respectively (Figure"
+                          - link "S6" [ref=e328] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information). In addition, the signals of Te─O, Se─O, and S─O were also resolved in Te─C, Se─C, and S─C, respectively, indicating partial oxidation of these dopants in corresponding carbon supports."
+                          - superscript [ref=e329]: "["
+                          - superscript [ref=e331]:
+                            - link "Reference 24 - Angew. Chem., Int. Ed." [ref=e332] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0024"
+                              - text: "24"
+                          - superscript [ref=e333]: "]"
+                        - paragraph [ref=e334]:
+                          - text: "N"
+                          - subscript [ref=e335]: "2"
+                          - text: adsorption-desorption results provided insights into the pore structure of the four carbon supports (Figure
+                          - link "S7" [ref=e336] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: and Table
+                          - link "S2" [ref=e337] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information). Table"
+                          - link "S2" [ref=e338] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information) shows that the specific surface areas of Te─C, Se─C, S─C, and C are 786, 767, 532, and 795 m
+                          - superscript [ref=e339]: "2"
+                          - text: g
+                          - superscript [ref=e340]: −1
+                          - text: ", respectively. The decrease in specific surface area for the three doped carbon supports may be attributed to the partial entry of heteroatoms into the nanopores of the original carbon, with the largest atomic ratio of sulfur atoms resulting in the largest reduction in the specific surface area of S─C supports, which is consistent with the results of EDS mapping. Figure"
+                          - link "S7b" [ref=e341] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information) demonstrates that there are more micropores in as-obtained carbon supports, as well as pores due to the accumulation of carbon spheres, which can be seen from the SEM results. The I
+                          - subscript [ref=e342]: D
+                          - text: /I
+                          - subscript [ref=e343]: G
+                          - text: ratio in Raman spectra can be used to elucidate the defects in as-prepared samples.
+                          - superscript [ref=e344]: "["
+                          - superscript [ref=e346]:
+                            - link "Reference 25 - Adv. Funct. Mater." [ref=e347] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0025"
+                              - text: "25"
+                          - superscript [ref=e348]: "]"
+                          - text: As shown in Figure
+                          - link "S8" [ref=e349] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information), the I
+                          - subscript [ref=e350]: D
+                          - text: /I
+                          - subscript [ref=e351]: G
+                          - text: values of the four carbon supports are ≈1.1, indicating similar defect structures among them. In addition, the surface contact angle test indicates that heteroatom doping can improve the hydrophobicity of carbon supports (Figure
+                          - link "S9" [ref=e352] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information), which can alleviate the effect of water flooding at the fuel cell cathode on the catalytic performance of the catalyst when operating at high current densities."
+                          - superscript [ref=e353]: "["
+                          - superscript [ref=e355]:
+                            - link "Reference 26 - Adv. Mater." [ref=e356] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0026"
+                              - text: "26"
+                          - superscript [ref=e357]: "]"
+                      - generic [ref=e358]:
+                        - heading "2.3 Catalyst Characterization" [level=3] [ref=e359]
+                        - paragraph [ref=e360]:
+                          - text: XRD patterns (Figure
+                          - link "1b" [ref=e361] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0001"
+                          - text: ) show that the as-prepared Pt
+                          - subscript [ref=e362]: "3"
+                          - text: Co i-NPs align well with the standards of the Joint Committee on Powder Diffraction Standards for the Pt
+                          - subscript [ref=e363]: "3"
+                          - text: Co intermetallic phase (the characteristic superlattice peaks of ordered intermetallic structures are marked by special symbols), confirming the successful synthesis of ordered Pt
+                          - subscript [ref=e364]: "3"
+                          - text: Co i-NPs. Furthermore, the intensity ratio of the (110) peak to the (111) peak (I
+                          - subscript [ref=e365]: (110)
+                          - text: /I
+                          - subscript [ref=e366]: (111)
+                          - text: ) for Pt
+                          - subscript [ref=e367]: "3"
+                          - text: Co/Te-C, Pt
+                          - subscript [ref=e368]: "3"
+                          - text: Co/Se-C, Pt
+                          - subscript [ref=e369]: "3"
+                          - text: Co/S-C, and Pt
+                          - subscript [ref=e370]: "3"
+                          - text: Co/C were 0.212, 0.137, 0.113, and 0.105, respectively, exceeding the conventional value for the L1
+                          - subscript [ref=e371]: "2"
+                          - text: "-Pt"
+                          - subscript [ref=e372]: "3"
+                          - text: Co phase.
+                          - superscript [ref=e373]: "["
+                          - superscript [ref=e375]:
+                            - link "Reference 27 - Adv. Funct. Mater." [ref=e376] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0027"
+                              - text: "27"
+                          - superscript [ref=e377]: "]"
+                          - text: This indicates that heteroatom doping enhances the order degree of Pt
+                          - subscript [ref=e378]: "3"
+                          - text: Co alloys, with Te doping providing the most pronounced effect on the order degree. Consequently, the as-prepared Pt
+                          - subscript [ref=e379]: "3"
+                          - text: Co i-NPs were classified as fully ordered L1
+                          - subscript [ref=e380]: "2"
+                          - text: "-Pt"
+                          - subscript [ref=e381]: "3"
+                          - text: Co for further characterization. The diffraction peaks of the Pt
+                          - subscript [ref=e382]: "3"
+                          - text: "Co i-NPs sharpened progressively from bottom to top, indicating a sequential increase in average particle size, which was calculated using the Scherrer equation from the full width at half-maximum of the (111) peak:"
+                          - superscript [ref=e383]: "["
+                          - superscript [ref=e385]:
+                            - link "Reference 28 - Proc. Natl. Acad. Sci. USA" [ref=e386] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0028"
+                              - text: "28"
+                          - superscript [ref=e387]: "]"
+                          - text: Pt
+                          - subscript [ref=e388]: "3"
+                          - text: Co/Te-C (≈3.9 nm) < Pt
+                          - subscript [ref=e389]: "3"
+                          - text: Co/Se-C (≈5.6 nm) < Pt
+                          - subscript [ref=e390]: "3"
+                          - text: Co/S-C (≈7.8 nm) < Pt
+                          - subscript [ref=e391]: "3"
+                          - text: Co/C (≈9.1 nm). TEM was used to further analyze the particle size distributions of Pt
+                          - subscript [ref=e392]: "3"
+                          - text: Co i-NPs. The average size of the Pt
+                          - subscript [ref=e393]: "3"
+                          - text: Co i-NPs distributed on the Te─C support was 4.2 nm. Small fractions of particles grew inevitably owing to the high-temperature annealing necessary to overcome the high energy barrier of atom diffusion and ordering in solid states,
+                          - superscript [ref=e394]: "["
+                          - superscript [ref=e396]:
+                            - link "Reference 29 - Nat. Commun." [ref=e397] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0029"
+                              - text: "29"
+                          - superscript [ref=e398]: "]"
+                          - text: and/or the aggregation of unstable Co species (Figure
+                          - link "1c" [ref=e399] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0001"
+                          - text: ). However, particle size growth in Pt
+                          - subscript [ref=e400]: "3"
+                          - text: Co i-NPs became increasingly severe on Se─C, S─C, and C (Figure
+                          - link "1d–f" [ref=e401] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0001"
+                          - text: ; Figure
+                          - link "S10" [ref=e402] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information), particularly on the C support where sizes reached 9.1 nm, matching well with XRD findings."
+                        - paragraph [ref=e403]:
+                          - text: Severe metal sintering was observed during the synthesis of Pt
+                          - subscript [ref=e404]: "3"
+                          - text: Co/C, attributed to the weak interactions between Pt
+                          - subscript [ref=e405]: "3"
+                          - text: Co i-NPs and the C support, the poor thermal stability allowing particle size growth through two pathways driven by high-temperature, particle migration and coalescence (PMC), and Ostwald ripening (OR).
+                          - superscript [ref=e406]: "["
+                          - superscript [ref=e408]:
+                            - link "Reference 30 - Acc. Chem. Res." [ref=e409] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0030"
+                              - text: "30"
+                            - text: "-"
+                            - link "Reference 34 - Nat. Mater." [ref=e410] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0034"
+                              - text: "34"
+                          - superscript [ref=e411]: "]"
+                          - text: Although the Pt
+                          - subscript [ref=e412]: "3"
+                          - text: Co i-NPs formed on the three doped supports exhibited varying degrees of metal sintering, all were less severe than those observed in the case of Pt
+                          - subscript [ref=e413]: "3"
+                          - text: Co/C, indicating that heteroatom doping likely results in stronger MSIs that mitigate some metal sintering.
+                          - superscript [ref=e414]: "["
+                          - superscript [ref=e416]:
+                            - link "Reference 35 - Cell Rep. Phys. Sci." [ref=e417] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0035"
+                              - text: "35"
+                          - superscript [ref=e418]: "]"
+                          - text: Table
+                          - link "S3" [ref=e419] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information) summarizes the sizes of Pt
+                          - subscript [ref=e420]: "3"
+                          - text: Co i-NPs loaded on different supports at various synthesis temperatures. These sizes demonstrate that few supports can uniformly disperse Pt and Co species to form small-sized Pt
+                          - subscript [ref=e421]: "3"
+                          - text: Co alloys at ultrahigh temperatures, a feat achieved by Te─C in this study. This further indicates that the Te anchoring strategy enhances the interactions between Pt
+                          - subscript [ref=e422]: "3"
+                          - text: Co i-NPs and the Te─C supports.
+                        - paragraph [ref=e423]:
+                          - text: Atomic-resolution high-angle annular dark-field scanning transmission electron microscope (HAADF-STEM) was used to acquire more detailed structural information regarding Pt
+                          - subscript [ref=e424]: "3"
+                          - text: Co/Te-C. In Figure
+                          - link "1g" [ref=e425] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0001"
+                          - text: ", a 4-nm Pt"
+                          - subscript [ref=e426]: "3"
+                          - text: Co i-NP is shown along the [001] direction. The atomic number contrast imaging of HAADF images reflects the Z-contrast of materials, resulting in Pt columns exhibiting higher intensity than Co columns.
+                          - superscript [ref=e427]: "["
+                          - superscript [ref=e429]:
+                            - link "Reference 36 - Nat. Mater." [ref=e430] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0036"
+                              - text: "36"
+                            - text: ","
+                            - link "Reference 37 - Nano Lett." [ref=e431] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0037"
+                              - text: "37"
+                          - superscript [ref=e432]: "]"
+                          - text: As depicted in Figure
+                          - link "S11" [ref=e433] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information), along the [001] axis, the unit cell comprises a Co column surrounded by Pt columns at the vertices and edges of each unit cell, arranged periodically in the form of a square matrix. Fast Fourier transform (FFT) patterns (Figure
+                          - link "1h" [ref=e434] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0001"
+                          - text: ) and alternating intensity profiles (Figure
+                          - link "1i" [ref=e435] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0001"
+                          - text: ) confirm the ordered structures of Pt
+                          - subscript [ref=e436]: "3"
+                          - text: Co/Te─C, consistent with the XRD results. EDS mapping (Figure
+                          - link "1j" [ref=e437] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0001"
+                          - text: ; Figure
+                          - link "S12" [ref=e438] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information) indicates that Pt and Co are uniformly distributed within the NPs and that the Pt/Co atomic ratio is close to the ideal ratio (3/1 for L1"
+                          - subscript [ref=e439]: "2"
+                          - text: Pt
+                          - subscript [ref=e440]: "3"
+                          - text: Co i-NPs). Furthermore, most residual Te species were found enriched in the regions containing Pt
+                          - subscript [ref=e441]: "3"
+                          - text: Co i-NPs, indicating a strong interaction between Pt
+                          - subscript [ref=e442]: "3"
+                          - text: Co i-NPs and the Te-doped support.
+                        - paragraph [ref=e443]:
+                          - text: To explore more details of particle size growth and ordered intermetallic nanoparticles, in-situ high-temperature XRD testing was performed on Pt
+                          - subscript [ref=e444]: "3"
+                          - text: Co/Te-C and Pt
+                          - subscript [ref=e445]: "3"
+                          - text: Co/C precursors. Figure
+                          - link "2a,b" [ref=e446] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0002"
+                          - text: showed that the (111) diffraction peak became sharper as the temperature increased, indicating that the size of the metal particles in both Pt
+                          - subscript [ref=e447]: "3"
+                          - text: Co/Te-C and Pt
+                          - subscript [ref=e448]: "3"
+                          - text: Co/C was gradually growing, and it was clear that the particle size in Pt
+                          - subscript [ref=e449]: "3"
+                          - text: Co/C grew dramatically, increasing to nearly 7 nm after holding for 6 h at 700 °C (Figure
+                          - link "2d" [ref=e450] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0002"
+                          - text: ), compared to 4.13 nm in Pt
+                          - subscript [ref=e451]: "3"
+                          - text: Co/Te-C (Figure
+                          - link "2c" [ref=e452] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0002"
+                          - text: ). These results demonstrated that Te doping significantly enhanced the resistance to sintering of Pt
+                          - subscript [ref=e453]: "3"
+                          - text: Co/Te-C catalysts during high-temperature annealing, which was consistent with the XRD and TEM findings. In addition, the intensity of the characteristic superlattice peak (110) reflects the evolution process of ordered intermetallic compounds,
+                          - superscript [ref=e454]: "["
+                          - superscript [ref=e456]:
+                            - link "Reference 38 - Nat. Commun." [ref=e457] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0038"
+                              - text: "38"
+                          - superscript [ref=e458]: "]"
+                          - text: and the (110) superlattice peak clearly visible in Pt
+                          - subscript [ref=e459]: "3"
+                          - text: Co/Te-C (marked by the green box in Figure
+                          - link "2a" [ref=e460] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0002"
+                          - text: ) meant that the disordered structure was gradually transitioning to ordered structure, but it was not detected in Pt
+                          - subscript [ref=e461]: "3"
+                          - text: Co/C, proving that the introduction of Te contributed to the formation of highly ordered intermetallic nanoparticles on Te-C supports.
+                        - figure "Figure 2 Open in figure viewer PowerPoint In situ high-temperature XRD results of a) Pt3Co/Te-C and b) Pt3Co/C. The process of particle size growth of c) Pt3Co/Te-C and d) Pt3Co/C during the in-situ high-temperature XRD testing." [ref=e463]:
+                          - link "Details are in the caption following the image" [ref=e464] [cursor=pointer]:
+                            - /url: /cms/asset/16812bd3-b68e-41c9-8c5d-15566af5f135/adfm202408383-fig-0002-m.jpg
+                            - img "Details are in the caption following the image" [ref=e466]
+                          - generic [ref=e467]:
+                            - generic [ref=e468]:
+                              - strong [ref=e469]: Figure 2
+                              - generic [ref=e470]:
+                                - link "Open in figure viewer" [ref=e471] [cursor=pointer]:
+                                  - /url: "#"
+                                - link "PowerPoint" [ref=e472] [cursor=pointer]:
+                                  - /url: /action/downloadFigures?id=adfm202408383-fig-0002&partId=&doi=10.1002%2Fadfm.202408383
+                                  - generic [ref=e473]: 
+                                  - text: PowerPoint
+                            - generic [ref=e474]:
+                              - text: In situ high-temperature XRD results of a) Pt
+                              - subscript [ref=e475]: "3"
+                              - text: Co/Te-C and b) Pt
+                              - subscript [ref=e476]: "3"
+                              - text: Co/C. The process of particle size growth of c) Pt
+                              - subscript [ref=e477]: "3"
+                              - text: Co/Te-C and d) Pt
+                              - subscript [ref=e478]: "3"
+                              - text: Co/C during the in-situ high-temperature XRD testing.
+                        - paragraph [ref=e479]:
+                          - text: XPS and X-ray absorption spectroscopy (XAS) were performed to analyze electron transfer and coordination structures of the as-synthesized catalysts.
+                          - superscript [ref=e480]: "["
+                          - superscript [ref=e482]:
+                            - link "Reference 39 - Nat. Commun." [ref=e483] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0039"
+                              - text: "39"
+                            - text: ","
+                            - link "Reference 40 - Nat. Commun." [ref=e484] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0040"
+                              - text: "40"
+                          - superscript [ref=e485]: "]"
+                          - text: The peaks with binding energies of ≈71.54 and 74.95 eV correspond to the 4f
+                          - subscript [ref=e486]: 7/2
+                          - text: and 4f
+                          - subscript [ref=e487]: 5/2
+                          - text: orbitals of Pt in Pt
+                          - subscript [ref=e488]: "3"
+                          - text: Co/C, respectively (Figure
+                          - link "3a" [ref=e489] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0003"
+                          - text: ). Compared with Pt
+                          - subscript [ref=e490]: "3"
+                          - text: Co/C, the binding energy of Pt 4f
+                          - subscript [ref=e491]: 7/2
+                          - text: in Pt
+                          - subscript [ref=e492]: "3"
+                          - text: Co/Te-C, Pt
+                          - subscript [ref=e493]: "3"
+                          - text: Co/Se-C, and Pt
+                          - subscript [ref=e494]: "3"
+                          - text: Co/S-C shifted positively by 0.120, 0.075, and 0.060 eV, respectively. This shift indicates electron transfer from Pt to the doped carbon supports, enhancing the MSIs.
+                          - superscript [ref=e495]: "["
+                          - superscript [ref=e497]:
+                            - link "Reference 41 - Energy Environ. Sci." [ref=e498] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0041"
+                              - text: "41"
+                            - text: ","
+                            - link "Reference 42 - J. Mater. Chem. A." [ref=e499] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0042"
+                              - text: "42"
+                          - superscript [ref=e500]: "]"
+                          - text: The aforementioned results also indicate a downshift of the d-band center of Pt in Pt
+                          - subscript [ref=e501]: "3"
+                          - text: Co i-NPs on doped carbon supports, which will weaken the adsorption strength of oxygen species on the Pt surface, benefiting the ORR activity.
+                          - superscript [ref=e502]: "["
+                          - superscript [ref=e504]:
+                            - link "Reference 21 - Energy Environ. Sci." [ref=e505] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0021"
+                              - text: "21"
+                          - superscript [ref=e506]: "]"
+                          - text: The Co 2p spectra in Pt
+                          - subscript [ref=e507]: "3"
+                          - text: Co/C exhibit the 2p
+                          - subscript [ref=e508]: 3/2
+                          - text: and 2p
+                          - subscript [ref=e509]: 1/2
+                          - text: orbitals of Co at 778.7 and 793.9 eV, respectively (Figure
+                          - link "S13" [ref=e510] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information). Significantly, the Co 2p"
+                          - subscript [ref=e511]: 1/2
+                          - text: spectra of Pt
+                          - subscript [ref=e512]: "3"
+                          - text: Co/Te-C, Pt
+                          - subscript [ref=e513]: "3"
+                          - text: Co/Se-C, and Pt
+                          - subscript [ref=e514]: "3"
+                          - text: Co/S-C all also show a positive shift compared with that of Pt
+                          - subscript [ref=e515]: "3"
+                          - text: Co/C, among which the Co 2p
+                          - subscript [ref=e516]: 1/2
+                          - text: in Pt
+                          - subscript [ref=e517]: "3"
+                          - text: Co/Te-C has the most positive shift with 0.95 eV. Notably, the Pt
+                          - subscript [ref=e518]: "3"
+                          - text: Co/Te-C catalyst exhibited the most considerable positive shift of the Pt 4f and Co 2p peaks, indicating stronger MSIs due to Te doping, superior to those induced by Se and S doping.
+                        - figure "Figure 3 Open in figure viewer PowerPoint a) XPS spectra of Pt 4f for Pt3Co/Te-C, Pt3Co/Se-C, Pt3Co/S-C, and Pt3Co/C. b) XANES spectra of the Pt L3-edge for the samples. c) EXAFS spectra of the Pt L3-edge for the samples, presented in k2 weighted R-space. d) Wavelet transform analysis of Pt3Co/Te-C. e) EXAFS data (points) and fit (line) of the Pt L3-edge for Pt3Co/Te-C, shown in k2 weighted R-space." [ref=e520]:
+                          - link "Details are in the caption following the image" [ref=e521] [cursor=pointer]:
+                            - /url: /cms/asset/e1ee827a-1c11-462b-be95-74f6144cdfcd/adfm202408383-fig-0003-m.jpg
+                            - img "Details are in the caption following the image" [ref=e523]
+                          - generic [ref=e524]:
+                            - generic [ref=e525]:
+                              - strong [ref=e526]: Figure 3
+                              - generic [ref=e527]:
+                                - link "Open in figure viewer" [ref=e528] [cursor=pointer]:
+                                  - /url: "#"
+                                - link "PowerPoint" [ref=e529] [cursor=pointer]:
+                                  - /url: /action/downloadFigures?id=adfm202408383-fig-0003&partId=&doi=10.1002%2Fadfm.202408383
+                                  - generic [ref=e530]: 
+                                  - text: PowerPoint
+                            - generic [ref=e531]:
+                              - text: a) XPS spectra of Pt 4f for Pt
+                              - subscript [ref=e532]: "3"
+                              - text: Co/Te-C, Pt
+                              - subscript [ref=e533]: "3"
+                              - text: Co/Se-C, Pt
+                              - subscript [ref=e534]: "3"
+                              - text: Co/S-C, and Pt
+                              - subscript [ref=e535]: "3"
+                              - text: Co/C. b) XANES spectra of the Pt L
+                              - subscript [ref=e536]: "3"
+                              - text: "-edge for the samples. c) EXAFS spectra of the Pt L"
+                              - subscript [ref=e537]: "3"
+                              - text: "-edge for the samples, presented in k"
+                              - superscript [ref=e538]: "2"
+                              - text: weighted R-space. d) Wavelet transform analysis of Pt
+                              - subscript [ref=e539]: "3"
+                              - text: Co/Te-C. e) EXAFS data (points) and fit (line) of the Pt L
+                              - subscript [ref=e540]: "3"
+                              - text: "-edge for Pt"
+                              - subscript [ref=e541]: "3"
+                              - text: Co/Te-C, shown in k
+                              - superscript [ref=e542]: "2"
+                              - text: weighted R-space.
+                        - paragraph [ref=e543]:
+                          - text: Subsequently, the Pt L
+                          - subscript [ref=e544]: "3"
+                          - text: "-edge X-ray absorption near-edge structure (XANES) spectra of Pt"
+                          - subscript [ref=e545]: "3"
+                          - text: Co/Te-C, Pt foil, and PtO
+                          - subscript [ref=e546]: "2"
+                          - text: are collected, as shown in Figure
+                          - link "3b" [ref=e547] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0003"
+                          - text: . The oxidation states of Pt in Pt
+                          - subscript [ref=e548]: "3"
+                          - text: Co/Te-C are approximately zero because the white line intensity of the XANES region is similar to this of Pt foil. Figure
+                          - link "S14" [ref=e549] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information) presents a quantitative analysis of the valence state of the sample according to the intensity of the white line, determining that the valence state of Pt in Pt
+                          - subscript [ref=e550]: "3"
+                          - text: Co/Te-C is +0.13. As depicted in the Pt L
+                          - subscript [ref=e551]: "3"
+                          - text: "-edge extended X-ray absorption fine structure (EXAFS) spectra (Figure"
+                          - link "3c" [ref=e552] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0003"
+                          - text: ), the Pt in PtTe
+                          - subscript [ref=e553]: "2"
+                          - text: shows two main scattering peaks at ≈1.93 and ≈2.53 Å, attributed to Pt─Pt and Pt─Te bonds, respectively.
+                          - superscript [ref=e554]: "["
+                          - superscript [ref=e556]:
+                            - link "Reference 43 - Adv. Mater." [ref=e557] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0043"
+                              - text: "43"
+                            - text: "-"
+                            - link "Reference 45 - Nat. Commun." [ref=e558] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0045"
+                              - text: "45"
+                          - superscript [ref=e559]: "]"
+                          - text: While Pt in Pt
+                          - subscript [ref=e560]: "3"
+                          - text: Co/Te-C at ≈2.21 Å exhibits a broad scattering peak, which corresponds to the wavelet transform analysis of Pt
+                          - subscript [ref=e561]: "3"
+                          - text: Co/Te-C (Figure
+                          - link "3d" [ref=e562] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0003"
+                          - text: ). EXAFS fitting of Pt
+                          - subscript [ref=e563]: "3"
+                          - text: Co/Te-C (Figure
+                          - link "3e" [ref=e564] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0003"
+                          - text: ", Figure"
+                          - link "S15" [ref=e565] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", and Table"
+                          - link "S4" [ref=e566] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information) demonstrates that the coordination numbers (CN) for the Pt─Pt shell (2.60 Å), Pt─Co shell (2.68 Å), and Pt─Te shell (2.65 Å) in Pt"
+                          - subscript [ref=e567]: "3"
+                          - text: Co/Te-C were 7.7, 2.2, and 1.3, respectively. It is interesting to note that the similar bond lengths of these three shells may be the reason for the overlapping of scattering peaks and the inability to distinguish specific coordinations.
+                          - superscript [ref=e568]: "["
+                          - superscript [ref=e570]:
+                            - link "Reference 46 - Proc. Natl. Acad. Sci. USA" [ref=e571] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0046"
+                              - text: "46"
+                            - text: ","
+                            - link "Reference 47 - J. Am. Chem. Soc." [ref=e572] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0047"
+                              - text: "47"
+                          - superscript [ref=e573]: "]"
+                          - text: The bond length of Pt─Pt bonds in Pt
+                          - subscript [ref=e574]: "3"
+                          - text: Co/Te─C and PtTe
+                          - subscript [ref=e575]: "2"
+                          - text: is observed to be shorter than in Pt foil (≈2.425 Å), suggesting compressive strain.
+                          - superscript [ref=e576]: "["
+                          - superscript [ref=e578]:
+                            - link "Reference 48 - Adv. Sci." [ref=e579] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0048"
+                              - text: "48"
+                            - text: ","
+                            - link "Reference 49 - Sci. China Mater." [ref=e580] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0049"
+                              - text: "49"
+                          - superscript [ref=e581]: "]"
+                          - text: Therefore, the coordination structure analysis indicated that the strong MSIs between Pt
+                          - subscript [ref=e582]: "3"
+                          - text: Co i-NPs and Te─C supports may be derived from the Pt─Te bonds in Pt
+                          - subscript [ref=e583]: "3"
+                          - text: Co/Te─C. These results provide substantial evidence for the previously discussed MSIs caused by Te doping.
+                        - paragraph [ref=e584]:
+                          - text: To explore the thermostability of Te, Se, and S, XPS spectra and ICP content of heteroatoms before and after annealing were performed. The XPS spectra of the heteroatoms in both the support and the corresponding catalyst were compared (Figure
+                          - link "S16" [ref=e585] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information). The spectral signals of Te 3d, Se 3d, and S 2p are clearly observable in the three doped carbon supports. However, after high-temperature annealing for Pt"
+                          - subscript [ref=e586]: "3"
+                          - text: Co i-NPs formation on each support, the detection of Se 3d and S 2p signals in Pt
+                          - subscript [ref=e587]: "3"
+                          - text: Co/Se-C and Pt
+                          - subscript [ref=e588]: "3"
+                          - text: Co/S-C becomes challenging, while the Te 3d signal remains clearly visible in Pt
+                          - subscript [ref=e589]: "3"
+                          - text: Co/Te-C. Furthermore, the ratio of Te to Te
+                          - superscript [ref=e590]: 4+
+                          - text: decreases in Pt
+                          - subscript [ref=e591]: "3"
+                          - text: Co/Te-C, likely due to partial oxidation of Te during high-temperature annealing. Additionally, the Te 3d peak in Pt
+                          - subscript [ref=e592]: "3"
+                          - text: Co/Te-C exhibits a negative shift of 0.45 eV compared with the pristine Te-C, aligning with the positive shift of the Pt 4f and Co 2p peak in Pt
+                          - subscript [ref=e593]: "3"
+                          - text: Co/Te-C. Table
+                          - link "S1" [ref=e594] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information) reveals that despite high-temperature annealing, the Te content in the catalyst remains at 2.3%, followed by Se at 0.9%, and S at 0.2%, which is nearly depleted during the annealing process. Thus, due to the inherent thermostability of Te-C, a sufficient amount of Te remains in the catalyst to maintain the strong MSIs not only during synthesis but also in the practical operation of fuel cells.
+                      - generic [ref=e595]:
+                        - heading "2.4 ORR Activity and Durability" [level=3] [ref=e596]
+                        - paragraph [ref=e597]:
+                          - text: The electrocatalytic performance of the as-prepared Pt
+                          - subscript [ref=e598]: "3"
+                          - text: Co-based catalysts toward the ORR was evaluated using a rotating disk electrode (RDE) in a 0.1 m HClO
+                          - subscript [ref=e599]: "4"
+                          - text: electrolyte at room temperature. Pt loading on the glassy carbon rotating disk electrode were controlled at 50 µg
+                          - subscript [ref=e600]: Pt
+                          - text: cm
+                          - superscript [ref=e601]: −2
+                          - text: for each catalyst for approaching the real demand of Pt for the actual working conditions of fuel cells. The ECSAs were determined by the electrochemical oxidation of the CO monolayers adsorbed on Pt. The linear sweep voltammetry (LSV) curves for the Pt
+                          - subscript [ref=e602]: "3"
+                          - text: Co-based catalysts are presented in Figure
+                          - link "4a" [ref=e603] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0004"
+                          - text: . The half-wave potential (E
+                          - subscript [ref=e604]: 1/2
+                          - text: ) for Pt
+                          - subscript [ref=e605]: "3"
+                          - text: Co/Te-C, Pt
+                          - subscript [ref=e606]: "3"
+                          - text: Co/Se-C, Pt
+                          - subscript [ref=e607]: "3"
+                          - text: Co/S-C, and Pt
+                          - subscript [ref=e608]: "3"
+                          - text: Co/C were 0.925, 0.915, 0.906, and 0.895 V (vs RHE), respectively, indicating that Pt
+                          - subscript [ref=e609]: "3"
+                          - text: Co/Te-C exhibits superior activity compared to the other as-prepared catalysts. Their specific activity (SA) and mass activity (MA) at 0.9 V are detailed in Figure
+                          - link "4b" [ref=e610] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0004"
+                          - text: and Table
+                          - link "S5" [ref=e611] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information). The smallest Pt
+                          - subscript [ref=e612]: "3"
+                          - text: Co i-NPs loaded on Te-C exhibits the highest SA of 0.64 mA cm
+                          - subscript [ref=e613]: Pt
+                          - superscript [ref=e614]: −2
+                          - text: and MA of 301 mA mg
+                          - subscript [ref=e615]: Pt
+                          - superscript [ref=e616]: −1
+                          - text: among the three doped carbon supports, which is 1.56 and 2.92 times higher than that of Pt
+                          - subscript [ref=e617]: "3"
+                          - text: Co/C. These enhancements, particularly from Te doping, may be attributed to modifications in the electronic structure and nanostructure of the Pt species. As depicted in Figure
+                          - link "4c" [ref=e618] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0004"
+                          - text: ", Figure"
+                          - link "S17" [ref=e619] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", and Table"
+                          - link "S5" [ref=e620] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information), Pt
+                          - subscript [ref=e621]: "3"
+                          - text: Co/Te-C has the highest ECSA of 47.3 m
+                          - superscript [ref=e622]: "2"
+                          - text: g
+                          - subscript [ref=e623]: Pt
+                          - superscript [ref=e624]: −1
+                          - text: ", followed by Pt"
+                          - subscript [ref=e625]: "3"
+                          - text: Co/Se-C (40.5 m
+                          - superscript [ref=e626]: "2"
+                          - text: g
+                          - subscript [ref=e627]: Pt
+                          - superscript [ref=e628]: −1
+                          - text: ) and Pt
+                          - subscript [ref=e629]: "3"
+                          - text: Co/S-C (33.6 m
+                          - superscript [ref=e630]: "2"
+                          - text: g
+                          - subscript [ref=e631]: Pt
+                          - superscript [ref=e632]: −1
+                          - text: ), and finally Pt
+                          - subscript [ref=e633]: "3"
+                          - text: Co/C (25.2 m
+                          - superscript [ref=e634]: "2"
+                          - text: g
+                          - subscript [ref=e635]: Pt
+                          - superscript [ref=e636]: −1
+                          - text: ). These results correlate with the earlier discussions on the size of Pt
+                          - subscript [ref=e637]: "3"
+                          - text: "Co i-NPs in XRD and TEM analyses: smaller particles, under the same Pt loading, exhibit larger ECSAs. The high catalytic activity further underscores the significance of the robust thermal stability induced by Te doping in resisting metal sintering."
+                        - figure "Figure 4 Open in figure viewer PowerPoint a) LSV curves of Pt3Co/Te-C, Pt3Co/Se-C, Pt3Co/S-C, and Pt3Co/C in O2-saturated 0.1 m HClO4. b) Comparison of SA and MA at 0.9 V of Pt3Co/Te-C, Pt3Co/Se-C, Pt3Co/S-C, and Pt3Co/C. c) The ECSAs of Pt3Co/Te-C, Pt3Co/Se-C, Pt3Co/S-C, and Pt3Co/C. d) LSV curves of Pt3Co/Te-C and Pt3Co/C before and after the ADTs. e) Comparison of SA and MA at 0.9 V of Pt3Co/Te-C and Pt3Co/C before and after the ADTs. f) Comparison of SA retention at 0.9 V of Pt3Co/Te-C and recently reported Pt-based catalysts after the ADTs. TEM images of Pt3Co/Te-C g) before and h) after the ADTs; of Pt3Co/C i) before and j) after the ADTs." [ref=e639]:
+                          - link "Details are in the caption following the image" [ref=e640] [cursor=pointer]:
+                            - /url: /cms/asset/dc42accc-47b9-4053-bd8c-9684aec3a6a2/adfm202408383-fig-0004-m.jpg
+                            - img "Details are in the caption following the image" [ref=e642]
+                          - generic [ref=e643]:
+                            - generic [ref=e644]:
+                              - strong [ref=e645]: Figure 4
+                              - generic [ref=e646]:
+                                - link "Open in figure viewer" [ref=e647] [cursor=pointer]:
+                                  - /url: "#"
+                                - link "PowerPoint" [ref=e648] [cursor=pointer]:
+                                  - /url: /action/downloadFigures?id=adfm202408383-fig-0004&partId=&doi=10.1002%2Fadfm.202408383
+                                  - generic [ref=e649]: 
+                                  - text: PowerPoint
+                            - generic [ref=e650]:
+                              - text: a) LSV curves of Pt
+                              - subscript [ref=e651]: "3"
+                              - text: Co/Te-C, Pt
+                              - subscript [ref=e652]: "3"
+                              - text: Co/Se-C, Pt
+                              - subscript [ref=e653]: "3"
+                              - text: Co/S-C, and Pt
+                              - subscript [ref=e654]: "3"
+                              - text: Co/C in O
+                              - subscript [ref=e655]: "2"
+                              - text: "-saturated 0.1 m HClO"
+                              - subscript [ref=e656]: "4"
+                              - text: . b) Comparison of SA and MA at 0.9 V of Pt
+                              - subscript [ref=e657]: "3"
+                              - text: Co/Te-C, Pt
+                              - subscript [ref=e658]: "3"
+                              - text: Co/Se-C, Pt
+                              - subscript [ref=e659]: "3"
+                              - text: Co/S-C, and Pt
+                              - subscript [ref=e660]: "3"
+                              - text: Co/C. c) The ECSAs of Pt
+                              - subscript [ref=e661]: "3"
+                              - text: Co/Te-C, Pt
+                              - subscript [ref=e662]: "3"
+                              - text: Co/Se-C, Pt
+                              - subscript [ref=e663]: "3"
+                              - text: Co/S-C, and Pt
+                              - subscript [ref=e664]: "3"
+                              - text: Co/C. d) LSV curves of Pt
+                              - subscript [ref=e665]: "3"
+                              - text: Co/Te-C and Pt
+                              - subscript [ref=e666]: "3"
+                              - text: Co/C before and after the ADTs. e) Comparison of SA and MA at 0.9 V of Pt
+                              - subscript [ref=e667]: "3"
+                              - text: Co/Te-C and Pt
+                              - subscript [ref=e668]: "3"
+                              - text: Co/C before and after the ADTs. f) Comparison of SA retention at 0.9 V of Pt
+                              - subscript [ref=e669]: "3"
+                              - text: Co/Te-C and recently reported Pt-based catalysts after the ADTs. TEM images of Pt
+                              - subscript [ref=e670]: "3"
+                              - text: Co/Te-C g) before and h) after the ADTs; of Pt
+                              - subscript [ref=e671]: "3"
+                              - text: Co/C i) before and j) after the ADTs.
+                        - paragraph [ref=e672]:
+                          - text: The performance losses and microscopic morphological evolution of Pt
+                          - subscript [ref=e673]: "3"
+                          - text: Co i-NPs after accelerated durability tests (ADTs) reflect the durability of the catalyst in practical applications. The ADTs of Pt
+                          - subscript [ref=e674]: "3"
+                          - text: Co/Te-C and Pt
+                          - subscript [ref=e675]: "3"
+                          - text: Co/C were operated by cycling between 0.6 and 1.0 V in a 0.1 m HClO
+                          - subscript [ref=e676]: "4"
+                          - text: solution. Remarkably, Pt
+                          - subscript [ref=e677]: "3"
+                          - text: Co/Te-C exhibited robust durability, with 8 mV loss in E
+                          - subscript [ref=e678]: 1/2
+                          - text: ", 29.8% loss in ECSAs, 1.5% loss in SA, and 30% loss in MA after 100000 ultra-long ADTs (Figure"
+                          - link "4d,e" [ref=e679] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0004"
+                          - text: ; Figures
+                          - link "S18" [ref=e680] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: and
+                          - link "S19" [ref=e681] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information). In contrast, the Pt"
+                          - subscript [ref=e682]: "3"
+                          - text: Co/C showed a 20 mV loss in E
+                          - subscript [ref=e683]: 1/2
+                          - text: ", 16.3% loss in ECSAs, 5% loss in SA, and 20% loss in MA after 30000 cycles. Figure"
+                          - link "4f" [ref=e684] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0004"
+                          - text: and Table
+                          - link "S6" [ref=e685] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information) illustrate the retention of initial ORR performance after ADTs for recently reported Pt-based catalysts. It is evident that after long-term ADTs, the ORR performance of most catalysts significantly attenuated, while the Pt
+                          - subscript [ref=e686]: "3"
+                          - text: Co/Te-C in this work retained most of its initial performance after 100000 voltage-accelerated cycles. Microscopic morphological changes of Pt
+                          - subscript [ref=e687]: "3"
+                          - text: Co i-NPs in the two catalysts before and after ADTs were performed via TEM. Upon comparison, it is evident that the Pt
+                          - subscript [ref=e688]: "3"
+                          - text: Co i-NPs on the Te-C support remained evenly distributed after 100000-cycle ADTs without severe degradation behaviors such as Ostwald Ripening, migration/coalescence, and detachment (Figure
+                          - link "4g,h" [ref=e689] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0004"
+                          - text: ; Figure
+                          - link "S20a,b" [ref=e690] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information). However, after only 30000 voltage-accelerated cycles, the Pt"
+                          - subscript [ref=e691]: "3"
+                          - text: Co i-NPs on the C support exhibited local agglomeration and a decrease in particle number, likely due to the detachment of some metal species from the carbon support (Figure
+                          - link "4i,j" [ref=e692] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0004"
+                          - text: ; Figure
+                          - link "S20c,d" [ref=e693] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information). Based on these results, Pt"
+                          - subscript [ref=e694]: "3"
+                          - text: Co/Te-C demonstrates robust electrochemical stability to resist metal degradation due to the significantly strong MSIs, leading to impressive durability.
+                      - generic [ref=e695]:
+                        - heading "2.5 MEA Performance and Durability" [level=3] [ref=e696]
+                        - paragraph [ref=e697]:
+                          - text: The as-prepared Pt
+                          - subscript [ref=e698]: "3"
+                          - text: Co/Te-C and Pt
+                          - subscript [ref=e699]: "3"
+                          - text: Co/C were respectively equipped as cathode catalysts in the MEA under H
+                          - subscript [ref=e700]: "2"
+                          - text: –O
+                          - subscript [ref=e701]: "2"
+                          - text: operation to evaluate their practical application in PEMFCs. The Pt load in the cathode catalysts is controlled at 0.2 mg cm
+                          - superscript [ref=e702]: −2
+                          - text: ", aligning with the target load for NEDO 2030. Cathode electrocatalyst durability was assessed by voltage square wave (alternating steps between 0.6 V for 3 s and 0.95 V for 3 s, with a rise time of ≈0.5 s or less), strictly following the DOE protocol. As depicted in Figure"
+                          - link "5a,b" [ref=e703] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0005"
+                          - text: ", the I-V and power density curves of Pt"
+                          - subscript [ref=e704]: "3"
+                          - text: Co/Te-C show slight degradation after 30000 voltage-accelerated cycles, whereas the performance of Pt
+                          - subscript [ref=e705]: "3"
+                          - text: Co/C dropped dramatically. Furthermore, Pt
+                          - subscript [ref=e706]: "3"
+                          - text: Co/Te-C achieved a high power density of 2.32 W cm
+                          - superscript [ref=e707]: −2
+                          - text: at 4 A cm
+                          - superscript [ref=e708]: −2
+                          - text: ", while the power density of Pt"
+                          - subscript [ref=e709]: "3"
+                          - text: Co/C at 2 A cm
+                          - superscript [ref=e710]: −2
+                          - text: was only 1.07 W cm
+                          - superscript [ref=e711]: −2
+                          - text: . Figure
+                          - link "5c" [ref=e712] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0005"
+                          - text: compares the performance parameters of Pt
+                          - subscript [ref=e713]: "3"
+                          - text: Co/Te-C and Pt
+                          - subscript [ref=e714]: "3"
+                          - text: Co/C at the beginning of life (BOL) stage and the end of life (EOL) stage under H
+                          - subscript [ref=e715]: "2"
+                          - text: –O
+                          - subscript [ref=e716]: "2"
+                          - text: operation. The MA at 0.9 V for Pt
+                          - subscript [ref=e717]: "3"
+                          - text: Co/Te-C decreased from 0.50 A mg
+                          - subscript [ref=e718]: Pt
+                          - superscript [ref=e719]: −1
+                          - text: at the BOL stage to 0.37 A mg
+                          - subscript [ref=e720]: Pt
+                          - superscript [ref=e721]: −1
+                          - text: at the EOL stage, with an MA retention rate of 74%, significantly exceeding both initial MA (≥ 0.44 A mg
+                          - subscript [ref=e722]: Pt
+                          - superscript [ref=e723]: −1
+                          - text: ) and retention rate (≥60%) of the DOE 2025 requirements. Table
+                          - link "S7" [ref=e724] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information) compared the MEA performance of Pt
+                          - subscript [ref=e725]: "3"
+                          - text: Co/Te-C and some of the recently reported PtCo-based catalysts and it was clear that Pt
+                          - subscript [ref=e726]: "3"
+                          - text: Co/Te-C exhibited excellent initial activity and durability in the MEA tests. In comparison, the initial MA of Pt
+                          - subscript [ref=e727]: "3"
+                          - text: Co/C was only 0.165 A mg
+                          - subscript [ref=e728]: Pt
+                          - superscript [ref=e729]: −1
+                          - text: ", which attenuated by 72.7% at the EOL stage. Overall, the MA and durability of Pt"
+                          - subscript [ref=e730]: "3"
+                          - text: Co/Te-C in MEA are considerably superior to those of Pt
+                          - subscript [ref=e731]: "3"
+                          - text: Co/C, corroborating the results obtained from RDE tests.
+                        - 'figure "Figure 5 Open in figure viewer PowerPoint BOL and EOL single-cell performance of a) Pt3Co/Te-C and b) Pt3Co/C cathodes. (Pt loading in the cathode: 0.2 mgPt cm−2, H2–O2, 100% RH, back pressure: 200 kPaabs, and 80 °C.) c) MA at 0.9 V of Pt3Co/Te-C and Pt3Co/C cathodes at the BOL and EOL stage in H2–O2 fuel cell. Scattering vector (q) versus SAXS scattered intensity of the raw and fitted data of Pt3Co/Te-C at the d) BOL and e) EOL stage. The q region for fitting ranges from 0.0044 to 0.283 Å−1. f) Fitted particle size distributions of Pt3Co/Te-C at the BOL and EOL stage. g) HAADF-STEM image of Pt3Co/Te-C at the EOL stage. The insets show the statistics of the particle size distribution of corresponding i-NPs. h) Atomic-resolution HAADF-STEM image of Pt3Co/Te-C at the EOL stage. i) FFT patterns of highlighted area from (h)." [ref=e733]':
+                          - link "Details are in the caption following the image" [ref=e734] [cursor=pointer]:
+                            - /url: /cms/asset/e29380d7-f489-4358-812a-78db8eacb3dd/adfm202408383-fig-0005-m.jpg
+                            - img "Details are in the caption following the image" [ref=e736]
+                          - generic [ref=e737]:
+                            - generic [ref=e738]:
+                              - strong [ref=e739]: Figure 5
+                              - generic [ref=e740]:
+                                - link "Open in figure viewer" [ref=e741] [cursor=pointer]:
+                                  - /url: "#"
+                                - link "PowerPoint" [ref=e742] [cursor=pointer]:
+                                  - /url: /action/downloadFigures?id=adfm202408383-fig-0005&partId=&doi=10.1002%2Fadfm.202408383
+                                  - generic [ref=e743]: 
+                                  - text: PowerPoint
+                            - generic [ref=e744]:
+                              - text: BOL and EOL single-cell performance of a) Pt
+                              - subscript [ref=e745]: "3"
+                              - text: Co/Te-C and b) Pt
+                              - subscript [ref=e746]: "3"
+                              - text: "Co/C cathodes. (Pt loading in the cathode: 0.2 mg"
+                              - subscript [ref=e747]: Pt
+                              - text: cm
+                              - superscript [ref=e748]: −2
+                              - text: ", H"
+                              - subscript [ref=e749]: "2"
+                              - text: –O
+                              - subscript [ref=e750]: "2"
+                              - text: ", 100% RH, back pressure: 200 kPa"
+                              - subscript [ref=e751]: abs
+                              - text: ", and 80 °C.) c) MA at 0.9 V of Pt"
+                              - subscript [ref=e752]: "3"
+                              - text: Co/Te-C and Pt
+                              - subscript [ref=e753]: "3"
+                              - text: Co/C cathodes at the BOL and EOL stage in H
+                              - subscript [ref=e754]: "2"
+                              - text: –O
+                              - subscript [ref=e755]: "2"
+                              - text: fuel cell. Scattering vector (q) versus SAXS scattered intensity of the raw and fitted data of Pt
+                              - subscript [ref=e756]: "3"
+                              - text: Co/Te-C at the d) BOL and e) EOL stage. The q region for fitting ranges from 0.0044 to 0.283 Å
+                              - superscript [ref=e757]: −1
+                              - text: . f) Fitted particle size distributions of Pt
+                              - subscript [ref=e758]: "3"
+                              - text: Co/Te-C at the BOL and EOL stage. g) HAADF-STEM image of Pt
+                              - subscript [ref=e759]: "3"
+                              - text: Co/Te-C at the EOL stage. The insets show the statistics of the particle size distribution of corresponding i-NPs. h) Atomic-resolution HAADF-STEM image of Pt
+                              - subscript [ref=e760]: "3"
+                              - text: Co/Te-C at the EOL stage. i) FFT patterns of highlighted area from (h).
+                        - paragraph [ref=e761]:
+                          - text: Small-angle X-ray scattering (SAXS) is used to analyze the particle size distributions of Pt
+                          - subscript [ref=e762]: "3"
+                          - text: Co i-NPs on the Te-C support within MEAs before and after the durability tests.
+                          - superscript [ref=e763]: "["
+                          - superscript [ref=e765]:
+                            - link "Reference 50 - J. Am. Chem. Soc." [ref=e766] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0050"
+                              - text: "50"
+                          - superscript [ref=e767]: "]"
+                          - text: Figure
+                          - link "5d,e" [ref=e768] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0005"
+                          - text: and Figure
+                          - link "S21a,b" [ref=e769] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information) displayed the scattering vector (q) versus SAXS scattered intensity of the raw and fitted data of Pt
+                          - subscript [ref=e770]: "3"
+                          - text: Co/Te-C at the BOL and EOL stage. The raw data was fitted through the open-source SasView 5.0.6 software with Power law plus Sphere model in the scattering vector ranging from 0.0044 to 0.283 Å
+                          - superscript [ref=e771]: −1
+                          - text: . As shown in Figure
+                          - link "5f" [ref=e772] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0005"
+                          - text: ", at the BOL stage, the size of Pt"
+                          - subscript [ref=e773]: "3"
+                          - text: Co i-NPs on Te-C was mainly 4 nm, while at the EOL stage, these i-NPs were predominantly 3 nm with wide particle size distributions. This may be attributed to the fact that Pt species in Pt
+                          - subscript [ref=e774]: "3"
+                          - text: Co/Te-C were more inclined to dissolve during the Ostwald Ripening process for prolonged exposure to voltages higher than 0.8 V in the durability tests.
+                          - superscript [ref=e775]: "["
+                          - superscript [ref=e777]:
+                            - link "Reference 51 - Top. Catal." [ref=e778] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0051"
+                              - text: "51"
+                          - superscript [ref=e779]: "]"
+                          - text: In order to more intuitively analyze the particle size distribution of Pt
+                          - subscript [ref=e780]: "3"
+                          - text: Co/Te-C at the EOL stage, the HAADF-STEM was performed for further analysis. Figure
+                          - link "5g" [ref=e781] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0005"
+                          - text: showed that the average size of the Pt
+                          - subscript [ref=e782]: "3"
+                          - text: Co i-NPs on Te-C supports was 3.01 nm after the durability tests, which was in perfect agreement with the SAX results. Furthermore, atomic-resolution HAADF-STEM images showed that the Pt
+                          - subscript [ref=e783]: "3"
+                          - text: Co nanoparticles maintained the L1
+                          - subscript [ref=e784]: "2"
+                          - text: ordered structure on the Te-C supports (Figure
+                          - link "5h,i" [ref=e785] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0005"
+                          - text: ), but lost that on the C supports (Figure
+                          - link "S22" [ref=e786] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information) attributing to the large dissolution loss of Co species (Table"
+                          - link "S8" [ref=e787] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information) during the MEA durability tests, which once again confirmed the significance of Te doping to improve the stability of Pt"
+                          - subscript [ref=e788]: "3"
+                          - text: Co i-NPs.
+                      - generic [ref=e789]:
+                        - heading "2.6 DFT Calculations" [level=3] [ref=e790]
+                        - paragraph [ref=e791]:
+                          - text: To further explore the strong MSIs induced by heteroatom doping and analyze the ORR pathway in the as-synthesized catalysts, DFT calculations were conducted. Initially, four atomistic models were constructed, each consisting of a 13-atom Pt
+                          - subscript [ref=e792]: "10"
+                          - text: Co
+                          - subscript [ref=e793]: "3"
+                          - text: "(10 Pt atoms, 3 Co atoms) cluster on a graphene layer: with two Te atoms (Pt"
+                          - subscript [ref=e794]: "10"
+                          - text: Co
+                          - subscript [ref=e795]: "3"
+                          - text: /Te-C), two Se atoms (Pt
+                          - subscript [ref=e796]: "10"
+                          - text: Co
+                          - subscript [ref=e797]: "3"
+                          - text: /Se-C), two S atoms (Pt
+                          - subscript [ref=e798]: "10"
+                          - text: Co
+                          - subscript [ref=e799]: "3"
+                          - text: /S-C), and without dopants (Pt
+                          - subscript [ref=e800]: "10"
+                          - text: Co
+                          - subscript [ref=e801]: "3"
+                          - text: /C). Notably, Pt
+                          - subscript [ref=e802]: "10"
+                          - text: Co
+                          - subscript [ref=e803]: "3"
+                          - text: is utilized to represent Pt
+                          - subscript [ref=e804]: "3"
+                          - text: Co due to similar atomic proportions. The optimized atomistic structures are depicted in Figure
+                          - link "6a" [ref=e805] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0006"
+                          - text: and Figure
+                          - link "S23" [ref=e806] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information). The binding energies for the Pt
+                          - subscript [ref=e807]: "10"
+                          - text: Co
+                          - subscript [ref=e808]: "3"
+                          - text: /Te-C, Pt
+                          - subscript [ref=e809]: "10"
+                          - text: Co
+                          - subscript [ref=e810]: "3"
+                          - text: /Se-C, Pt
+                          - subscript [ref=e811]: "10"
+                          - text: Co
+                          - subscript [ref=e812]: "3"
+                          - text: /S-C, and Pt
+                          - subscript [ref=e813]: "10"
+                          - text: Co
+                          - subscript [ref=e814]: "3"
+                          - text: /C systems are calculated to be −10.28, −9.49, −8.61, and −3.95 eV, respectively (Figure
+                          - link "6b" [ref=e815] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0006"
+                          - text: ). The more negative the value, the stronger the MSI,
+                          - superscript [ref=e816]: "["
+                          - superscript [ref=e818]:
+                            - link "Reference 50 - J. Am. Chem. Soc." [ref=e819] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0050"
+                              - text: "50"
+                          - superscript [ref=e820]: "]"
+                          - text: indicating that the Te-C exhibits the strongest bonding force with Pt
+                          - subscript [ref=e821]: "3"
+                          - text: Co i-NPs among the four metal–support samples. The differential charge density diagrams (Figure
+                          - link "6c" [ref=e822] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0006"
+                          - text: ; Figure
+                          - link "S24" [ref=e823] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: ", Supporting Information) showed that the introduction of heteroatoms increased the electronic transfers between the Pt"
+                          - subscript [ref=e824]: "10"
+                          - text: Co
+                          - subscript [ref=e825]: "3"
+                          - text: clusters and the substrate, which can not only enhance the interaction between the metal and the support, but also optimize the electronic structure of Pt to improve the ORR intrinsic activity. These inferences are consistent with the XPS and catalytic performance results. Therefore, the calculations confirm that Te doping introduces stronger MSIs, which theoretically elucidates the enhanced thermal and electrochemical stability of Pt
+                          - subscript [ref=e826]: "3"
+                          - text: Co/Te-C.
+                        - 'figure "Figure 6 Open in figure viewer PowerPoint a) Optimized atomistic structure of a 13-atom Pt10Co3 (10 Pt atoms, 3 Co atoms) cluster adsorbed on a graphene layer with two Te atoms. b) Binding energy between a Pt10Co3 cluster and different carbon supports. c) Differential charge density diagrams of the Pt10Co3/Te-C atomic model (Top: top view, Bottom: face view). d) Optimized atomistic structure of *OH adsorption on the Te-C@Pt(111). e) Calculated free energy evolution along the four-electron associative ORR pathway on Te-C@Pt(111) under electrode potentials of 0 V, 1.23 V, and limiting potential. In these figures, gray, blue, brown, red, yellow, and green spheres represent Pt, Co, C, Te, O, and H atoms, respectively." [ref=e828]':
+                          - link "Details are in the caption following the image" [ref=e829] [cursor=pointer]:
+                            - /url: /cms/asset/4b7e0008-2993-45c9-ac65-a9f31c83a47e/adfm202408383-fig-0006-m.jpg
+                            - img "Details are in the caption following the image" [ref=e831]
+                          - generic [ref=e832]:
+                            - generic [ref=e833]:
+                              - strong [ref=e834]: Figure 6
+                              - generic [ref=e835]:
+                                - link "Open in figure viewer" [ref=e836] [cursor=pointer]:
+                                  - /url: "#"
+                                - link "PowerPoint" [ref=e837] [cursor=pointer]:
+                                  - /url: /action/downloadFigures?id=adfm202408383-fig-0006&partId=&doi=10.1002%2Fadfm.202408383
+                                  - generic [ref=e838]: 
+                                  - text: PowerPoint
+                            - generic [ref=e839]:
+                              - text: a) Optimized atomistic structure of a 13-atom Pt
+                              - subscript [ref=e840]: "10"
+                              - text: Co
+                              - subscript [ref=e841]: "3"
+                              - text: (10 Pt atoms, 3 Co atoms) cluster adsorbed on a graphene layer with two Te atoms. b) Binding energy between a Pt
+                              - subscript [ref=e842]: "10"
+                              - text: Co
+                              - subscript [ref=e843]: "3"
+                              - text: cluster and different carbon supports. c) Differential charge density diagrams of the Pt
+                              - subscript [ref=e844]: "10"
+                              - text: Co
+                              - subscript [ref=e845]: "3"
+                              - text: "/Te-C atomic model (Top: top view, Bottom: face view). d) Optimized atomistic structure of *OH adsorption on the Te-C@Pt(111). e) Calculated free energy evolution along the four-electron associative ORR pathway on Te-C@Pt(111) under electrode potentials of 0 V, 1.23 V, and limiting potential. In these figures, gray, blue, brown, red, yellow, and green spheres represent Pt, Co, C, Te, O, and H atoms, respectively."
+                        - paragraph [ref=e846]:
+                          - text: The DFT calculation was employed to study the effect of four carbon supports on the ORR activity. Since acid leaching and secondary heat treatment removed unstable surface cobalt species, ORR occured mainly at the Pt site on the surface. Four atomic models were constructed, each featuring a graphene structure with two Te atoms, two Se atoms, two S atoms, and no dopant, integrated with a Pt(111) plane, denoted as Te-C@Pt(111), Se-C@Pt(111), S-C@Pt(111), and C@Pt(111). Additionally, various oxygen-containing intermediates (
+                          - superscript [ref=e847]: ∗
+                          - text: OOH,
+                          - superscript [ref=e848]: ∗
+                          - text: O, and
+                          - superscript [ref=e849]: ∗
+                          - text: OH) were incorporated into each model to simulate the real ORR process. Figure
+                          - link "6d" [ref=e850] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0006"
+                          - text: and Figure
+                          - link "S25" [ref=e851] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information) illustrate the
+                          - superscript [ref=e852]: ∗
+                          - text: OH adsorption in these models. The computational hydrogen electrode (CHE) method was utilized to predict the free energy evolution along the four-electron associative ORR pathway on the optimized models.
+                          - superscript [ref=e853]: "["
+                          - superscript [ref=e855]:
+                            - link "Reference 52 - J. Am. Chem. Soc." [ref=e856] [cursor=pointer]:
+                              - /url: "#adfm202408383-bib-0052"
+                              - text: "52"
+                          - superscript [ref=e857]: "]"
+                          - text: As shown in Figure
+                          - link "6e" [ref=e858] [cursor=pointer]:
+                            - /url: "#adfm202408383-fig-0006"
+                          - text: and Figure
+                          - link "S26" [ref=e859] [cursor=pointer]:
+                            - /url: "#support-information-section"
+                          - text: (Supporting Information), the rate-determining step (RDS) of ORR in these systems is the desorption and hydrogenation of
+                          - superscript [ref=e860]: ∗
+                          - text: OH to produce H
+                          - subscript [ref=e861]: "2"
+                          - text: O. It was observed that the desorption of
+                          - superscript [ref=e862]: ∗
+                          - text: OH in Te-C@Pt(111) required the least free energy among the models, indicating that Te doping optimizes the desorption of
+                          - superscript [ref=e863]: ∗
+                          - text: OH and enhances ORR activity. Furthermore, the ORR activity of each catalyst was inferred from the magnitude of the limit potential, with Te-C@Pt(111), Se-C@Pt(111), S-C@Pt(111), and C@Pt(111) showing potentials of 0.64, 0.62, 0.61, and 0.58 V, respectively. These results theoretically confirm that Pt
+                          - subscript [ref=e864]: "3"
+                          - text: Co/Te-C exhibits the best ORR performance among the four Pt
+                          - subscript [ref=e865]: "3"
+                          - text: Co-based catalysts, aligning with experimental findings.
+                    - generic [ref=e866]:
+                      - heading "3 Conclusion" [level=2] [ref=e867]
+                      - paragraph [ref=e868]:
+                        - text: A thermostable Te-modified carbon support stably loaded with highly active Pt
+                        - subscript [ref=e869]: "3"
+                        - text: Co i-NPs was both experimentally and theoretically validated. The introduction of Te enhanced electronic transfers and facilitated the formation of Pt─Te bonds between the metal and the support, which optimized the desorption of
+                        - superscript [ref=e870]: ∗
+                        - text: OH to increase intrinsic activity and displayed robust thermal and electrochemical stability to resist metal sintering and degradation. After the high-temperature alloying process, the average size of highly ordered Pt
+                        - subscript [ref=e871]: "3"
+                        - text: Co i-NPs in Pt
+                        - subscript [ref=e872]: "3"
+                        - text: Co/Te-C was 3.9 nm, with most Te atoms retained, leading to the SA of Pt
+                        - subscript [ref=e873]: "3"
+                        - text: Co/Te-C decayed by only 1.5% after 100000 voltage-accelerated cycles without significant morphological change. Notably, both the BOL and EOL performance indicators in the MEA test significantly surpassed the DOE 2025 targets. This study not only introduces a novel perspective for thermostable heteroatom anchoring but also paves the way for future research on Pt-based i-NP catalysts with satisfactory activity and durability in PEMFCs.
+                    - generic [ref=e874]:
+                      - heading "Acknowledgements" [level=2] [ref=e875]
+                      - paragraph [ref=e876]: This work was supported by the Key Research and Development Program of Guangdong Province (2020B0909040001), Guangdong Basic and Applied Basic Research Foundation (2022A1515140152), and Foshan Xianhu Laboratory of the Advanced Energy Science and Technology Guangdong Laboratory (XHRD2023-006).
+                      - list
+                    - generic [ref=e877]:
+                      - heading "Conflict of Interest" [level=2] [ref=e878]
+                      - paragraph [ref=e879]: The authors declare no conflict of interest.
+                    - generic [ref=e880]:
+                      - heading "Data Availability Statement" [level=2] [ref=e881]
+                      - paragraph [ref=e882]: The data that support the findings of this study are available from the corresponding author upon reasonable request.
+                    - heading "Supporting Information" [level=2] [ref=e885]:
+                      - button "Supporting Information" [ref=e886] [cursor=pointer]:
+                        - generic [ref=e887]:
+                          - generic [ref=e888]: Supporting Information
+                          - generic [ref=e889]: 
+                    - generic [ref=e891]:
+                      - heading "References" [level=2] [ref=e892]:
+                        - button "References" [ref=e893] [cursor=pointer]:
+                          - generic [ref=e894]: References
+                          - generic [ref=e895]: 
+                      - text:                                                                                                                                                                                                                                        
+                  - heading "Citing Literature" [level=2] [ref=e899]:
+                    - button "Citing Literature" [ref=e900] [cursor=pointer]:
+                      - generic [ref=e901]: Citing Literature
+                      - generic [ref=e902]: 
+              - generic [ref=e903]:
+                - text: Advertisement    
+                - generic: Advertisement
+          - generic: 
+          - generic:      
+          - generic:       
+          - text:       |
+          - link "Download PDF" [ref=e905] [cursor=pointer]:
+            - /url: /doi/pdf/10.1002/adfm.202408383
+      - link "back" [ref=e908] [cursor=pointer]:
+        - /url: javascript:void(0)
+        - generic [ref=e909]: 
+        - text: back
+    - contentinfo [ref=e912]:
+      - generic [ref=e913]:
+        - generic [ref=e917]:
+          - generic [ref=e918]:
+            - generic [ref=e919]:
+              - link "The Advanced Portfolio Logo" [ref=e920] [cursor=pointer]:
+                - /url: /
+                - img "The Advanced Portfolio Logo" [ref=e921]
+              - generic [ref=e922]:
+                - link "" [ref=e923] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/showcase/advanced-portfolio/
+                  - generic [ref=e924]: 
+                - link "" [ref=e925] [cursor=pointer]:
+                  - /url: https://www.twitter.com/advportfolio
+                  - generic [ref=e926]: 
+                - link "" [ref=e927] [cursor=pointer]:
+                  - /url: https://www.instagram.com/advancedportfolionews/
+                  - generic [ref=e928]: 
+                - link "" [ref=e929] [cursor=pointer]:
+                  - /url: https://www.facebook.com/advancedportfolionews
+                  - generic [ref=e930]: 
+                - link "" [ref=e931] [cursor=pointer]:
+                  - /url: https://www.youtube.com/@advancedportfolionews
+                  - generic [ref=e932]: 
+              - paragraph [ref=e934]:
+                - link "Contact the Advanced Team" [ref=e935] [cursor=pointer]:
+                  - /url: mailto:advancedteam@wiley.com
+                  - generic [ref=e936]: 
+                  - text: Contact the Advanced Team
+            - generic [ref=e938]:
+              - heading "All Journals" [level=2] [ref=e939]:
+                - link "All Journals" [ref=e940] [cursor=pointer]:
+                  - /url: /hub/portfolio-journals
+              - heading "Multidisciplinary" [level=3] [ref=e941]
+              - list [ref=e942]:
+                - listitem [ref=e943]:
+                  - link "Advanced Science" [ref=e944] [cursor=pointer]:
+                    - /url: /journal/21983844
+              - heading "Physical Sciences Journals" [level=3] [ref=e945]
+              - heading "Broad Scope Materials Science" [level=4] [ref=e946]
+              - list [ref=e947]:
+                - listitem [ref=e948]:
+                  - link "Advanced Materials" [ref=e949] [cursor=pointer]:
+                    - /url: /journal/15214095
+                - listitem [ref=e950]:
+                  - link "Advanced Functional Materials" [ref=e951] [cursor=pointer]:
+                    - /url: /journal/16163028
+                - listitem [ref=e952]:
+                  - link "Advanced Materials Interfaces" [ref=e953] [cursor=pointer]:
+                    - /url: /journal/21967350
+              - heading "Energy & Sustainability Sciences" [level=4] [ref=e954]
+              - list [ref=e955]:
+                - listitem [ref=e956]:
+                  - link "Advanced Energy Materials" [ref=e957] [cursor=pointer]:
+                    - /url: /journal/16146840
+                - listitem [ref=e958]:
+                  - link "Advanced Sustainable Systems" [ref=e959] [cursor=pointer]:
+                    - /url: /journal/23667486
+                - listitem [ref=e960]:
+                  - link "Advanced Energy and Sustainability Research" [ref=e961] [cursor=pointer]:
+                    - /url: /journal/26999412
+                - listitem [ref=e962]:
+                  - link "Advanced Synthesis and Catalysis" [ref=e963] [cursor=pointer]:
+                    - /url: /journal/16154169
+                - listitem [ref=e964]:
+                  - link "Advanced Chemical Engineering" [ref=e965] [cursor=pointer]:
+                    - /url: /journal/3053786x
+              - heading "Engineering & Technology" [level=4] [ref=e966]
+              - list [ref=e967]:
+                - listitem [ref=e968]:
+                  - link "Advanced Engineering Materials" [ref=e969] [cursor=pointer]:
+                    - /url: /journal/15272648
+                - listitem [ref=e970]:
+                  - link "Advanced Materials Technologies" [ref=e971] [cursor=pointer]:
+                    - /url: /journal/2365709X
+                - listitem [ref=e972]:
+                  - link "Advanced Sensor Research" [ref=e973] [cursor=pointer]:
+                    - /url: /journal/27511219
+            - generic [ref=e975]:
+              - heading "Physics, Photonics & Electronics" [level=4] [ref=e976]
+              - list [ref=e977]:
+                - listitem [ref=e978]:
+                  - link "Advanced Optical Materials" [ref=e979] [cursor=pointer]:
+                    - /url: /journal/21951071
+                - listitem [ref=e980]:
+                  - link "Advanced Quantum Technologies" [ref=e981] [cursor=pointer]:
+                    - /url: /journal/25119044
+                - listitem [ref=e982]:
+                  - link "Advanced Physics Research" [ref=e983] [cursor=pointer]:
+                    - /url: /journal/27511200
+                - listitem [ref=e984]:
+                  - link "Advanced Photonics Research" [ref=e985] [cursor=pointer]:
+                    - /url: /journal/26999293
+                - listitem [ref=e986]:
+                  - link "Advanced Electronic Materials" [ref=e987] [cursor=pointer]:
+                    - /url: /journal/2199160X
+              - heading "AI, Robotics & Theory" [level=4] [ref=e988]
+              - list [ref=e989]:
+                - listitem [ref=e990]:
+                  - link "Advanced Intelligent Systems" [ref=e991] [cursor=pointer]:
+                    - /url: /journal/26404567
+                - listitem [ref=e992]:
+                  - link "Advanced Computing" [ref=e993] [cursor=pointer]:
+                    - /url: /journal/3054100x
+                - listitem [ref=e994]:
+                  - link "Advanced Robotics Research" [ref=e995] [cursor=pointer]:
+                    - /url: /journal/29439973
+                - listitem [ref=e996]:
+                  - link "Advanced Intelligent Discovery" [ref=e997] [cursor=pointer]:
+                    - /url: /journal/29439981
+                - listitem [ref=e998]:
+                  - link "Advanced Theory and Simulation" [ref=e999] [cursor=pointer]:
+                    - /url: /journal/25130390
+              - heading "Life & Health Sciences Journals" [level=3] [ref=e1000]
+              - list [ref=e1001]:
+                - listitem [ref=e1002]:
+                  - link "Advanced Healthcare Materials" [ref=e1003] [cursor=pointer]:
+                    - /url: /journal/21922659
+                - listitem [ref=e1004]:
+                  - link "Advanced Therapeutics" [ref=e1005] [cursor=pointer]:
+                    - /url: /journal/23663987
+                - listitem [ref=e1006]:
+                  - link "Advanced NanoBiomed Research" [ref=e1007] [cursor=pointer]:
+                    - /url: /journal/26999307
+                - listitem [ref=e1008]:
+                  - link "Advanced Biology" [ref=e1009] [cursor=pointer]:
+                    - /url: /journal/27010198
+                - listitem [ref=e1010]:
+                  - link "Advanced Genetics" [ref=e1011] [cursor=pointer]:
+                    - /url: /journal/26416573
+                - listitem [ref=e1012]:
+                  - link "Advanced Oncology" [ref=e1013] [cursor=pointer]:
+                    - /url: /journal/25128647
+          - generic [ref=e1015]: © 2026 Advanced journals portfolio
+        - generic [ref=e1016]:
+          - generic [ref=e1017]:
+            - heading "Additional links" [level=2] [ref=e1018]
+            - generic [ref=e1020]:
+              - generic [ref=e1022]:
+                - heading "About Wiley Online Library" [level=3] [ref=e1023]
+                - list [ref=e1024]:
+                  - listitem [ref=e1025]:
+                    - link "Privacy Policy" [ref=e1026] [cursor=pointer]:
+                      - /url: https://www.wiley.com/privacy
+                  - listitem [ref=e1027]:
+                    - link "Terms of Use" [ref=e1028] [cursor=pointer]:
+                      - /url: https://onlinelibrary.wiley.com/terms-and-conditions
+                  - listitem [ref=e1029]:
+                    - link "About Cookies" [ref=e1030] [cursor=pointer]:
+                      - /url: https://onlinelibrary.wiley.com/cookies
+                  - listitem [ref=e1031]:
+                    - button "Manage Cookies" [ref=e1032] [cursor=pointer]
+                  - listitem [ref=e1033]:
+                    - link "Accessibility" [ref=e1034] [cursor=pointer]:
+                      - /url: https://onlinelibrary.wiley.com/accessibility
+                  - listitem [ref=e1035]:
+                    - link "Wiley Research DE&I Statement and Publishing Policies" [ref=e1036] [cursor=pointer]:
+                      - /url: https://onlinelibrary.wiley.com/publishing-policies
+              - generic [ref=e1038]:
+                - heading "Help & Support" [level=3] [ref=e1039]
+                - list [ref=e1040]:
+                  - listitem [ref=e1041]:
+                    - link "Contact Us" [ref=e1042] [cursor=pointer]:
+                      - /url: https://hub.wiley.com/community/support/onlinelibrary
+                  - listitem [ref=e1043]:
+                    - link "Training and Support" [ref=e1044] [cursor=pointer]:
+                      - /url: https://www.wiley.com/customer-success/wiley-online-library-training-hub
+                  - listitem [ref=e1045]:
+                    - link "DMCA & Reporting Piracy" [ref=e1046] [cursor=pointer]:
+                      - /url: https://onlinelibrary.wiley.com/dmca-notification-policy
+                  - listitem [ref=e1047]:
+                    - link "Sitemap" [ref=e1048] [cursor=pointer]:
+                      - /url: https://onlinelibrary.wiley.com/sitemap
+              - generic [ref=e1050]:
+                - heading "Opportunities" [level=3] [ref=e1051]
+                - list [ref=e1052]:
+                  - listitem [ref=e1053]:
+                    - link "Subscription Agents" [ref=e1054] [cursor=pointer]:
+                      - /url: https://onlinelibrary.wiley.com/agents
+                  - listitem [ref=e1055]:
+                    - link "Advertisers & Corporate Partners" [ref=e1056] [cursor=pointer]:
+                      - /url: https://onlinelibrary.wiley.com/advertisers
+              - generic [ref=e1058]:
+                - heading "Connect with Wiley" [level=3] [ref=e1059]
+                - list [ref=e1060]:
+                  - listitem [ref=e1061]:
+                    - link "The Wiley Network" [ref=e1062] [cursor=pointer]:
+                      - /url: https://www.wiley.com/network
+                  - listitem [ref=e1063]:
+                    - link "Wiley Press Room" [ref=e1064] [cursor=pointer]:
+                      - /url: https://newsroom.wiley.com/
+          - generic [ref=e1068]:
+            - generic [ref=e1069]:
+              - paragraph [ref=e1070]:
+                - text: Copyright © 1999-2026
+                - link "John Wiley & Sons, Inc" [ref=e1071] [cursor=pointer]:
+                  - /url: https://www.wiley.com
+                - text: or related companies. All rights reserved, including rights for text and data mining and training of artificial intelligence technologies or similar technologies.
+              - paragraph
+            - link "Wiley" [ref=e1073] [cursor=pointer]:
+              - /url: https://www.wiley.com
+              - img "Wiley Home Page" [ref=e1074]
+    - text:      ▲   
